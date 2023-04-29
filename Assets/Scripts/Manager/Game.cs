@@ -39,7 +39,12 @@ namespace Isekai.Managers
         public void GoToPlayScene()
         {
             LevelManager.Instance.TransitionToScene("PlayScene",
-                () => GameStarted = true).Forget();
+                () => 
+                {
+                    GameStarted = true;
+                    //TODO delete this test call;
+                    DialogueManager.Instance.PushNextDialogue();
+                }).Forget();
         }
         public void PauseGame()
         {

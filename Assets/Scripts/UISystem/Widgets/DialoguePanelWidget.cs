@@ -9,51 +9,43 @@ using UnityEngine.UI;
 
 public class DialoguePanelWidget : MonoBehaviour
 {
+    public Action OnNextMessage;
+
     [SerializeField]
     private Image m_leftAvatar;
-    [SerializeField]
-    private Image m_rightAvatar;
     [SerializeField]
     private TextMeshProUGUI m_talkText;
     [SerializeField]
     private TextMeshProUGUI m_speakerName;
+    [SerializeField]
+    private float m_textSpeed;
 
     private CancellationTokenSource m_tokenSource;
     private string curText;
+    private bool m_complete;
 
     private void Start()
     {
-        
+        OnNextMessage += () => Debug.Log("next");
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            Initialize(true, "hello world hello world hello world hello world hello world", "You:", null);
+            //Initialize("hello world hello world hello world hello world hello world", "You:", null);
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            m_tokenSource.Cancel();
-            m_talkText.text = curText;
-        }
+        checkUserInput();
     }
-    public void Initialize(bool isSelf, string talkText, string speakerName, Sprite avatar)
+    public void Initialize(string talkText, string speakerName, Sprite avatar, Action onMessageComplete)
     {
-        if (isSelf)
-        {
-            m_rightAvatar.gameObject.SetActive(false);
-            m_leftAvatar.gameObject.SetActive(true);
-            m_leftAvatar.sprite = avatar;
-        }
-        else
-        {
-            m_leftAvatar.gameObject.SetActive(false);
-            m_rightAvatar.gameObject.SetActive(true);
-            m_rightAvatar.sprite = avatar;
-        }
+        m_leftAvatar.gameObject.SetActive(true);
+        m_leftAvatar.sprite = avatar;
+        m_speakerName.text = speakerName;
+
         curText = talkText;
         m_talkText.text = curText;
-
+        
+        this.OnNextMessage += onMessageComplete;
         //StartShowText
         if (m_tokenSource != null)
         {
@@ -61,6 +53,7 @@ public class DialoguePanelWidget : MonoBehaviour
             m_tokenSource.Dispose();
         }
         m_tokenSource = new CancellationTokenSource();
+        m_complete = false;
         SetTalkText().Forget();
 
     }
@@ -70,8 +63,25 @@ public class DialoguePanelWidget : MonoBehaviour
         for (int i = 0; i < curText.Length; i++)
         {
             m_talkText.text = curText.Substring(0, i + 1);
-            await UniTask.Delay(TimeSpan.FromSeconds(0.05f),false,PlayerLoopTiming.Update, m_tokenSource.Token);
+            await UniTask.Delay(TimeSpan.FromSeconds(m_textSpeed),false,PlayerLoopTiming.Update, m_tokenSource.Token);
+        }
+        UniTask.ReturnToMainThread(this.GetCancellationTokenOnDestroy());
+        m_complete = true;
+    }
+    private void checkUserInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            if (!m_complete)
+            {
+                m_tokenSource.Cancel();
+                m_talkText.text = curText;
+                m_complete = true;
+            }
+            else
+            {
+                OnNextMessage?.Invoke();
+            }
         }
     }
-    
 }
