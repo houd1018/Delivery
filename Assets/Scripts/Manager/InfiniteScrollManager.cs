@@ -8,9 +8,12 @@ public class InfiniteScrollManager:MonoBehaviour
     public Transform Parent;
     public GameObject ChunkPrefab;
     [SerializeField]
+    private InfiniteScrollData m_infiniteScrollData;
+    [SerializeField]
     private float m_startPos;
     [SerializeField]
     private float m_chunckHeight;
+
     private int m_totalChunks;
     private Camera m_mainCamera;
     private Queue<Transform> m_chunks;
@@ -38,7 +41,7 @@ public class InfiniteScrollManager:MonoBehaviour
         {
             Debug.Log(bottomPos + " " + (m_startPos - m_totalChunks * m_chunckHeight));
             Debug.Log("need spawn chunk");
-            var go = Instantiate(ChunkPrefab, Parent);
+            var go = Instantiate(m_infiniteScrollData.ChunkPrefabs[Random.Range((int)0,m_infiniteScrollData.ChunkPrefabs.Length)], Parent);
             go.transform.localPosition = new Vector3(0, m_startPos - m_totalChunks * m_chunckHeight, 0);
             m_chunks.Enqueue(go.transform);
             m_totalChunks++;
