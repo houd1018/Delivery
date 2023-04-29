@@ -52,7 +52,7 @@ namespace Isekai.Managers
                     var transitionScreen = Resources.Load<GameObject>("Prefabs/UI/Screens/"+EScreenType.TransitionScreen.ToString());
                     TransitionScreen screen = Instantiate(transitionScreen, go.transform).GetComponent<TransitionScreen>();
                     ScreenManager.Instance.CurTransitionScreen = screen;
-                    //LevelManager.Instance.TransitionScreen = screen;
+                    LevelManager.Instance.TransitionScreen = screen;
                 }
             }
 

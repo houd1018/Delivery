@@ -29,17 +29,17 @@ namespace Isekai.Managers
             LayerManager.Instance.Initialize();
             ScreenManager.Instance.Initialize();
             SoundManager.Instance.Initialize();
-            //LevelManager.Instance.Initialize();
+            LevelManager.Instance.Initialize();
         }
         public async UniTaskVoid BackToMainMenu()
         {
-            //await LevelManager.Instance.TransitionToScene("MainMenu",null);
+            await LevelManager.Instance.TransitionToScene("MainMenu",null);
             ScreenManager.Instance.TransitionToInstant(UI.EScreenType.MainMenuScreen, ELayerType.DefaultLayer, new MainMenuViewModel());
         }
         public void GoToPlayScene()
         {
-            //LevelManager.Instance.TransitionToScene("PlayScene",
-            //    () => GameStarted = true).Forget();
+            LevelManager.Instance.TransitionToScene("PlayScene",
+                () => GameStarted = true).Forget();
         }
         public void PauseGame()
         {
