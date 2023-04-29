@@ -72,7 +72,9 @@ namespace Isekai.Managers
                 
             }
 
-            var newScreen =Resources.Load<GameObject>(screenType.ToString()).GetComponent<Screen<TViewModel>>();
+            var prefab =Resources.Load<GameObject>("Prefabs/UI/Screens/"+screenType.ToString());
+            var go = Instantiate(prefab, LayerManager.Instance.GetLayer(ELayerType.DefaultLayer));
+            var newScreen = go.GetComponent<Screen<TViewModel>>();
             newScreen.AssignViewModel(viewModel);
             newScreen.OnEnterScreen();
             m_screens.Add(newScreen.gameObject);
@@ -95,7 +97,9 @@ namespace Isekai.Managers
                 m_curScreen.Pop();
             }
 
-            var newScreen = Resources.Load<GameObject>(screenType.ToString()).GetComponent<Screen<TViewModel>>();
+            var prefab = Resources.Load<GameObject>("Prefabs/UI/Screens/" + screenType.ToString());
+            var go = Instantiate(prefab, LayerManager.Instance.GetLayer(ELayerType.DefaultLayer));
+            var newScreen = go.GetComponent<Screen<TViewModel>>();
             newScreen.AssignViewModel(viewModel);
 
             await CurTransitionScreen.TransitionOut();
@@ -177,7 +181,7 @@ namespace Isekai.Managers
 
         public View<TViewModel> GetScreen<TViewModel>(EScreenType screenType, ELayerType layer = ELayerType.DefaultLayer) where TViewModel : IViewModel
         {
-            var screen = Resources.Load<GameObject>(screenType.ToString()).GetComponent<Screen<TViewModel>>();
+            var screen = Resources.Load<GameObject>("Prefabs/UI/Screens/" + screenType.ToString()).GetComponent<Screen<TViewModel>>();
             return screen as View<TViewModel>;
         }
     }

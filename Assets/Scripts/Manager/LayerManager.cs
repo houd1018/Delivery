@@ -30,9 +30,9 @@ namespace Isekai.Managers
             m_layers = new Dictionary<ELayerType, Layer>();
             ELayerType[] layerEnums = (ELayerType[])Enum.GetValues(typeof(ELayerType));
 
-            GameObject prefab = Resources.Load<GameObject>(EPrefabs.DefaultLayer.ToString());
+            GameObject prefab = Resources.Load<GameObject>("Prefabs/UI/Layer/DefaultLayer");
 
-            if(prefab == null)
+            if (prefab == null)
             {
                 Debug.LogError("Failed to load Prefab: DefaultLayer. Please check whether it in the addressable. ");
                 return;
@@ -49,7 +49,7 @@ namespace Isekai.Managers
                 DontDestroyOnLoad(go);
                 if (layerEnums[i] == ELayerType.TransitionLayer)
                 {
-                    var transitionScreen = Resources.Load<GameObject>(EScreenType.TransitionScreen.ToString());
+                    var transitionScreen = Resources.Load<GameObject>("Prefabs/UI/Screens/"+EScreenType.TransitionScreen.ToString());
                     TransitionScreen screen = Instantiate(transitionScreen, go.transform).GetComponent<TransitionScreen>();
                     ScreenManager.Instance.CurTransitionScreen = screen;
                     //LevelManager.Instance.TransitionScreen = screen;
