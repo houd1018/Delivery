@@ -6,12 +6,12 @@ public class TestMovingBlock : BaseBlock
 {
     [SerializeField] float moveSpeed = 5f;
     bool isHorizontal;
-    int isRightOrUp;
+    int isRight;
     protected override void Start()
     {
         base.Start();
         isHorizontal = Random.value > 0.5f;
-        isRightOrUp = (Random.Range(0, 2) * 2) - 1;
+        isRight = (Random.Range(0, 2) * 2) - 1;
     }
     protected override void Update()
     {
@@ -27,21 +27,16 @@ public class TestMovingBlock : BaseBlock
         }
     }
 
-    void test()
-    {
-        Vector3 delta = isRightOrUp * transform.up * moveSpeed * Time.deltaTime;
-        transform.position += delta;
-    }
     void Move()
     {
         if (isHorizontal)
         {
-            Vector3 delta = isRightOrUp * transform.right * moveSpeed * Time.deltaTime;
+            Vector3 delta = isRight * transform.right * moveSpeed * Time.deltaTime;
             transform.position += delta;
         }
         else
         {
-            Vector3 delta = isRightOrUp * transform.up * moveSpeed * Time.deltaTime;
+            Vector3 delta = -transform.up * moveSpeed * Time.deltaTime;
             transform.position += delta;
         }
     }
