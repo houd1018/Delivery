@@ -25,7 +25,7 @@ public class DialogueManager : MonoSingleton<DialogueManager>
     {
         QueuedMessages = new Queue<MessageWrapper>();
         var prefab = Resources.Load<GameObject>("Prefabs/UI/Widgets/DialoguePanelWidget");
-        m_dialoguePanel = Instantiate(prefab, LayerManager.Instance.GetLayer(ELayerType.PopupLayer)).GetComponent<DialoguePanelWidget>();
+        m_dialoguePanel = Instantiate(prefab, LayerManager.Instance.GetLayer(ELayerType.DefaultLayer)).GetComponent<DialoguePanelWidget>();
         m_dialoguePanel.gameObject.SetActive(false);
     }
     public void Initialize()
@@ -68,5 +68,9 @@ public class DialogueManager : MonoSingleton<DialogueManager>
             QueuedMessages.Enqueue(item); 
         }
         m_messageComplete = true;
+    }
+    private void OnDestroy()
+    {
+        Destroy(m_dialoguePanel.gameObject);
     }
 }

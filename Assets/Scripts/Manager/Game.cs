@@ -11,6 +11,15 @@ namespace Isekai.Managers
     {
 
     }
+    public class ResumeGameEvent : IEventHandler
+    {
+
+    }
+
+    public class GameStartEvent : IEventHandler
+    {
+
+    }
     public class Game : MonoSingleton<Game>
     {
         public bool GameStarted;
@@ -33,6 +42,7 @@ namespace Isekai.Managers
         }
         public async UniTaskVoid BackToMainMenu()
         {
+            Time.timeScale = 1;
             await LevelManager.Instance.TransitionToScene("MainMenu",null);
             ScreenManager.Instance.TransitionToInstant(UI.EScreenType.MainMenuScreen, ELayerType.DefaultLayer, new MainMenuViewModel());
         }
@@ -42,17 +52,28 @@ namespace Isekai.Managers
                 () => 
                 {
                     GameStarted = true;
+                    EventSystem.Instance.SendEvent(typeof(GameStartEvent), new GameStartEvent());
                     //TODO delete this test call;
                     DialogueManager.Instance.PushNextDialogue();
                 }).Forget();
         }
         public void PauseGame()
         {
-            GameStarted = false;
+            Time.timeScale = 0;
+            EventSystem.Instance.SendEvent(typeof(PauseGameEvent), new PauseGameEvent());
         }
         public void ResumeGame()
         {
-            GameStarted = true;
+            Time.timeScale = 1;
+            EventSystem.Instance.SendEvent(typeof(ResumeGameEvent), new ResumeGameEvent());
+        }
+        public void PauseScroll()
+        {
+            
+        }
+        public void ResumeScroll()
+        {
+
         }
         private void Update()
         {

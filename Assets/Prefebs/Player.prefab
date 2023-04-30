@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7487951814062219209}
   - component: {fileID: 7487951814062219208}
   - component: {fileID: 7487951814062219211}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hermes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 7487951814062219206}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7487951814263264978}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 7487951814263264977}
   - component: {fileID: 7487951814263264980}
   - component: {fileID: 7487951814263264981}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,8 +156,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.024432063, y: 0.12578735}
-  m_Size: {x: 0.7241535, y: 0.9934086}
+  m_Offset: {x: -0.02725166, y: 0.009085894}
+  m_Size: {x: 0.49858725, y: 0.8884616}
   m_Direction: 0
 --- !u!61 &7487951814263264976
 BoxCollider2D:
@@ -172,7 +172,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.002755478, y: -0.49}
+  m_Offset: {x: -0.002755478, y: -0.41042495}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -183,7 +183,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.39448574, y: 0.2649045}
+  m_Size: {x: 0.39448574, y: 0.0850358}
   m_EdgeRadius: 0
 --- !u!50 &7487951814263264977
 Rigidbody2D:

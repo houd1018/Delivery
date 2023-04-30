@@ -26,14 +26,9 @@ public class DialoguePanelWidget : MonoBehaviour
 
     private void Start()
     {
-        OnNextMessage += () => Debug.Log("next");
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            //Initialize("hello world hello world hello world hello world hello world", "You:", null);
-        }
         checkUserInput();
     }
     public void Initialize(string talkText, string speakerName, Sprite avatar, Action onMessageComplete)
