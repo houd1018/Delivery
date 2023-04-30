@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        isDead = characterStats.CurrentHealth == 0;
+        isDead = characterStats.CurrentHealth <= 0;
         Walk();
         SwitchStates();
         FlipSprite();
