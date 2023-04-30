@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public enum PlayerStates { WALK, DEAD }
+public enum PlayerStates { WALK, DEAD, JUMP }
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float runSpeed = 10f;
@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
         Walk();
         // SwitchAnimation();
         SwitchStates();
+        FlipSprite();
     }
 
     void SwitchStates()
@@ -48,7 +49,9 @@ public class PlayerController : MonoBehaviour
             case PlayerStates.DEAD:
                 // do things when player is dead
                 break;
-
+            case PlayerStates.JUMP:
+                // do thigns when jumping
+                break;
         }
     }
 
@@ -63,6 +66,7 @@ public class PlayerController : MonoBehaviour
         if (value.isPressed)
         {
             rb.velocity += new Vector2(0f, jumpForce);
+            myAnimator.SetTrigger("Jump");
         }
     }
 
@@ -75,6 +79,17 @@ public class PlayerController : MonoBehaviour
         bool HasHorizontalSpeed = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
         myAnimator.SetBool("Walk", HasHorizontalSpeed);
     }
+
+    void FlipSprite()
+    {
+        bool playerHasHorizontalSpeed = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
+
+        if (playerHasHorizontalSpeed)
+        {
+            transform.localScale = new Vector2(Mathf.Sign(-(rb.velocity.x)), 1f);
+        }
+    }
+
 
     // restrict moving in the camera scene
     private void RestrictMove()
