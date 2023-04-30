@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class BaseBlock : MonoBehaviour
 {
-    [SerializeField]
     private LayerMask m_layerMask;
 
     float offsetX= 0;
