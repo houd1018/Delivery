@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestBlock1 : BaseBlock
+public class TestDisappearBlock : BaseBlock
 {
     float m_disappearTime = 1;
     float m_appearTime = 1;
@@ -15,6 +15,7 @@ public class TestBlock1 : BaseBlock
     }
     protected override void Update()
     {
+        
         base.Update();
         checkPlayerStand();
         checkBlockDestroy();
@@ -23,7 +24,6 @@ public class TestBlock1 : BaseBlock
 
     void checkPlayerStand()
     {
-        if (IsPlayerStand) Debug.Log("stand");
         if (IsPlayerStand&&!m_isDestroying)
         {
             m_isDestroying = true;
@@ -49,7 +49,8 @@ public class TestBlock1 : BaseBlock
             m_appearTime -= Time.deltaTime;
             if (m_appearTime <= 0)
             {
-                m_isDestroyed = true;
+                
+                m_isDestroyed = false;
                 m_isDestroying = false;
                 gameObject.GetComponent<SpriteRenderer>().enabled = true;
                 gameObject.GetComponent<BoxCollider2D>().enabled = true;

@@ -28,7 +28,7 @@ public class BaseChunk : MonoBehaviour
         switch (type)
         {
             case BlockType.TestBlock1:
-                block.AddComponent<TestBlock1>();
+                block.AddComponent<TestDisappearBlock>();
                 break;
             default:
                 break;
