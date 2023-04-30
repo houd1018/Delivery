@@ -131,14 +131,18 @@ public class PlayerController : MonoBehaviour
     }
     void checkGameStarted()
     {
-        if (GameModel.Instance.GameStarted)
+        if (Game.Instance != null)
         {
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            if (GameModel.Instance.GameStarted)
+            {
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            }
+            else
+            {
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
         }
-        else
-        {
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        }
+
     }
 
     IEnumerator WaitforTopTrapDamage()

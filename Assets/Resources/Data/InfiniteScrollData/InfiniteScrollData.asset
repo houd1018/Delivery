@@ -25,5 +25,9 @@ MonoBehaviour:
     BlockSprite: {fileID: 21300000, guid: 55a425392c4f547418991b9269f6650f, type: 3}
   - Type: 0
     BlockSprite: {fileID: 21300000, guid: ad08c1b79a8cee44fb9d333e8d3e91eb, type: 3}
-  EarthBlocks: []
-  HellBlocks: []
+  EarthBlocks:
+  - Type: 0
+    BlockSprite: {fileID: 21300000, guid: 7de4a7ddca29ef34abc03c1eec030e2f, type: 3}
+  HellBlocks:
+  - Type: 0
+    BlockSprite: {fileID: 21300000, guid: 7de4a7ddca29ef34abc03c1eec030e2f, type: 3}
