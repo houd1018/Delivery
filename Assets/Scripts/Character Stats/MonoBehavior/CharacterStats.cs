@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterStats : MonoBehaviour
 {
     public CharacterStats_SO characterData;
-    
+
     #region Read from Data_SO
     public int MaxHealth
     {
@@ -44,5 +44,12 @@ public class CharacterStats : MonoBehaviour
         }
     }
     #endregion
+
+    public void TakeApple(CharacterStats player, int healValue)
+    {
+        CurrentHealth += healValue;
+        MaxHealth += healValue;
+        // TODO: Update UI
+    }
 
 }
