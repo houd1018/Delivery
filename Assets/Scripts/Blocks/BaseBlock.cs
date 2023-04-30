@@ -7,9 +7,9 @@ public class BaseBlock : MonoBehaviour
 {
     private LayerMask m_layerMask;
 
-    float offsetX= 0;
-    float offsetY=0.12f;
-    float distance=2.88f;
+    float offsetX = 0;
+    float offsetY = 0.12f;
+    float distance = 2.88f;
     Vector3 offsetPos;
     protected GameObject player;
 
