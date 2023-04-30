@@ -9,18 +9,18 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float runSpeed = 10f;
     [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private float respawnDelay = 3f;
 
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Vector2 maxBounds;
+    private CharacterStats characterStats;
     private PlayerStates playerStates;
-
+    private Vector3 postionThreeSecondsBefore;
     CapsuleCollider2D myBodyCollider;
     BoxCollider2D myFeetCollider;
     Animator myAnimator;
 
-    // -------- anim bool----------
-    bool isWalk;
     bool isDead;
 
     private void Awake()
@@ -29,14 +29,22 @@ public class PlayerController : MonoBehaviour
         myBodyCollider = GetComponent<CapsuleCollider2D>();
         myFeetCollider = GetComponent<BoxCollider2D>();
         myAnimator = GetComponentInChildren<Animator>();
+        characterStats = GetComponent<CharacterStats>();
+    }
+
+    private void Start()
+    {
+        StartCoroutine(FindPositionThreeSceondsBefore());
     }
 
     private void FixedUpdate()
     {
+        isDead = characterStats.CurrentHealth == 0;
         Walk();
-        // SwitchAnimation();
         SwitchStates();
         FlipSprite();
+        TopTrapDamage();
+        Fall();
     }
 
     void SwitchStates()
@@ -62,26 +70,31 @@ public class PlayerController : MonoBehaviour
     }
     private void OnJump(InputValue value)
     {
+        if (isDead) { return; }
         if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return; }
         if (value.isPressed)
         {
             rb.velocity += new Vector2(0f, jumpForce);
             myAnimator.SetTrigger("Jump");
+            playerStates = PlayerStates.JUMP;
         }
     }
 
     private void Walk()
     {
+        if (isDead) { return; }
         Vector2 playerVelocity = new Vector2(moveInput.x * runSpeed, rb.velocity.y);
         rb.velocity = playerVelocity;
 
         // walking state check
         bool HasHorizontalSpeed = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
         myAnimator.SetBool("Walk", HasHorizontalSpeed);
+        playerStates = PlayerStates.WALK;
     }
 
     void FlipSprite()
     {
+        if (isDead) { return; }
         bool playerHasHorizontalSpeed = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
 
         if (playerHasHorizontalSpeed)
@@ -90,22 +103,35 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-    // restrict moving in the camera scene
-    private void RestrictMove()
+    void TopTrapDamage()
     {
-        if (Math.Abs(transform.position.x) > Math.Abs(maxBounds.x))
+        if (isDead) { return; }
+        if (transform.position.y >= Camera.main.ScreenToWorldPoint(new Vector3(0,Screen.height,0)).y)
         {
-            // left side
-            if (transform.position.x < 0)
-            {
-                transform.position = new Vector2(-maxBounds.x, transform.position.y);
-            }
-            else
-            {
-                // right side
-                transform.position = new Vector2(maxBounds.x, transform.position.y);
-            }
+            characterStats.CurrentHealth -= 1;
+        }
+
+    }
+    void Fall()
+    {
+        if (isDead) { return; }
+        if (transform.position.y <= Camera.main.ScreenToWorldPoint(Vector3.zero).y)
+        {
+            transform.position = postionThreeSecondsBefore;
+            characterStats.CurrentHealth -= 1;
         }
     }
+
+// update respwan point which is at the postion x seconds ago
+    IEnumerator FindPositionThreeSceondsBefore()
+    {
+        while (true)
+        {
+            yield return new WaitForSecondsRealtime(respawnDelay);
+            postionThreeSecondsBefore = transform.position;
+        }
+    }
+
+
+
 }
