@@ -15,14 +15,32 @@ namespace Isekai.Managers
     {
 
     }
-
     public class GameStartEvent : IEventHandler
     {
 
     }
+    public class GameOverEvent : IEventHandler
+    {
+
+    }
+    public class PauseScrollEvent : IEventHandler
+    {
+
+    }
+    public class ResumeScrollEvent : IEventHandler
+    {
+
+    }
+    public class DialogueEvent : IEventHandler
+    {
+        public DialogueEvent(bool isTalking)
+        {
+            IsTalking = isTalking;
+        }
+        public bool IsTalking;
+    }
     public class Game : MonoSingleton<Game>
     {
-        public bool GameStarted;
         async void Start()
         {
             await InitializeManagers();
@@ -40,22 +58,16 @@ namespace Isekai.Managers
             SoundManager.Instance.Initialize();
             LevelManager.Instance.Initialize();
         }
+
         public async UniTaskVoid BackToMainMenu()
         {
             Time.timeScale = 1;
             await LevelManager.Instance.TransitionToScene("MainMenu",null);
             ScreenManager.Instance.TransitionToInstant(UI.EScreenType.MainMenuScreen, ELayerType.DefaultLayer, new MainMenuViewModel());
         }
-        public void GoToPlayScene()
+        public void GoToZeueScene()
         {
-            LevelManager.Instance.TransitionToScene("PlayScene",
-                () => 
-                {
-                    GameStarted = true;
-                    EventSystem.Instance.SendEvent(typeof(GameStartEvent), new GameStartEvent());
-                    //TODO delete this test call;
-                    DialogueManager.Instance.PushNextDialogue();
-                }).Forget();
+            LevelManager.Instance.TransitionToScene("ZeusScene",()=> { GameModel.Instance.GameStarted = true; } ).Forget();
         }
         public void PauseGame()
         {
@@ -69,15 +81,41 @@ namespace Isekai.Managers
         }
         public void PauseScroll()
         {
-            
+            EventSystem.Instance.SendEvent(typeof(PauseScrollEvent), new PauseScrollEvent());
         }
         public void ResumeScroll()
         {
-
+            EventSystem.Instance.SendEvent(typeof(ResumeScrollEvent), new ResumeScrollEvent());
+        }
+        private void OnPauseClicked()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) && GameModel.Instance.GameStarted)
+            {
+                PauseGame();
+                PopupManager.Instance.ShowPopup<PausePopup>(PopupType.PausePopup,
+                    new PopupData()
+                    {
+                        OnCancelClicked = ResumeGame,
+                        OnConfirmClicked = OnClickBackToMenu
+                    });
+            }
+        }
+        public void OnClickBackToMenu()
+        {
+            EventSystem.Instance.SendEvent(typeof(GameOverEvent), new GameOverEvent());
+            BackToMainMenu().Forget();
         }
         private void Update()
         {
-
+            OnPauseClicked();
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                PauseScroll();
+            }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                ResumeScroll();
+            }
         }
 
     }

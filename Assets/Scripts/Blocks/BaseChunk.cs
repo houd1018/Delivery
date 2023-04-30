@@ -18,7 +18,10 @@ public class BaseChunk : MonoBehaviour
             Blocks.Add(item.gameObject);
             if(m_scrollData.Difficulty > Random.Range(0f,1f))
             {
-                assignBlockFunction(item.gameObject, m_scrollData.HeavenBlocks[Random.Range((int)0, (int)m_scrollData.HeavenBlocks.Length)]);
+                BlockData data = m_scrollData.HeavenBlocks[Random.Range((int)0, (int)m_scrollData.HeavenBlocks.Length)];
+                
+                item.GetComponent<SpriteRenderer>().sprite = data.BlockSprite;
+                assignBlockFunction(item.gameObject, data.Type);
             }
         }
         

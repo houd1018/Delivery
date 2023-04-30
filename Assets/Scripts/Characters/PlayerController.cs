@@ -1,3 +1,4 @@
+using Isekai.Managers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,14 +41,18 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+    }
+    private void Update()
+    {
         isDead = characterStats.CurrentHealth == 0;
         Walk();
         SwitchStates();
         FlipSprite();
         TopTrapDamage();
         Fall();
+        checkGameStarted();
     }
-
     void SwitchStates()
     {
         switch (playerStates)
@@ -122,6 +127,17 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = postionThreeSecondsBefore;
             characterStats.CurrentHealth -= 1;
+        }
+    }
+    void checkGameStarted()
+    {
+        if (GameModel.Instance.GameStarted)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
     }
 

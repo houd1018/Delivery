@@ -58,7 +58,7 @@ public class DialoguePanelWidget : MonoBehaviour
         for (int i = 0; i < curText.Length; i++)
         {
             m_talkText.text = curText.Substring(0, i + 1);
-            await UniTask.Delay(TimeSpan.FromSeconds(m_textSpeed),false,PlayerLoopTiming.Update, m_tokenSource.Token);
+            await UniTask.Delay(TimeSpan.FromSeconds(m_textSpeed),true,PlayerLoopTiming.Update, m_tokenSource.Token);
         }
         UniTask.ReturnToMainThread(this.GetCancellationTokenOnDestroy());
         m_complete = true;

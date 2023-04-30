@@ -1,4 +1,5 @@
 using Isekai.Managers;
+using MyPackage;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ public class DialogueManager : MonoSingleton<DialogueManager>
     public Queue<MessageWrapper> QueuedMessages;
 
     private bool m_messageComplete;
+    private Action m_curOnMessageComplete;
     void Start()
     {
         QueuedMessages = new Queue<MessageWrapper>();
@@ -35,16 +37,14 @@ public class DialogueManager : MonoSingleton<DialogueManager>
     // Update is called once per frame
     void Update()
     {
-/*        if (Input.GetKeyDown(KeyCode.S))
-        {
-            PushMessages(m_dialogueData.Dialogues[m_dialogueData.DialogueCounter].Dialogues);
-        }*/
         checkQueueMessages();
     }
     private void checkQueueMessages()
     {
         if (QueuedMessages.Count > 0 && m_messageComplete)
         {
+            Game.Instance.PauseGame();
+            EventSystem.Instance.SendEvent(typeof(DialogueEvent), new DialogueEvent(true));
             var message = QueuedMessages.Dequeue();
             m_messageComplete = false;
             m_dialoguePanel.gameObject.SetActive(true);
@@ -52,22 +52,30 @@ public class DialogueManager : MonoSingleton<DialogueManager>
         }
         else if (QueuedMessages.Count == 0 && m_messageComplete)
         {
+            m_messageComplete = false;
+            Game.Instance.ResumeGame();
+            EventSystem.Instance.SendEvent(typeof(DialogueEvent), new DialogueEvent(false));
             m_dialoguePanel.gameObject.SetActive(false);
+
+            m_curOnMessageComplete?.Invoke();
+            m_curOnMessageComplete = default;
         }
-        
+
     }
 
     public void PushNextDialogue()
     {
-        PushMessages(m_dialogueData.Dialogues[m_dialogueData.DialogueCounter].Dialogues);
+        //PushMessages(m_dialogueData.Dialogues[m_dialogueData.DialogueCounter].Dialogues);
     }
-    private void PushMessages(MessageWrapper[] messages)
+
+    public void PushMessages(MessageWrapper[] messages,Action onDialogueComplete)
     {
         foreach (var item in messages)
         {
             QueuedMessages.Enqueue(item); 
         }
         m_messageComplete = true;
+        m_curOnMessageComplete += onDialogueComplete;
     }
     private void OnDestroy()
     {

@@ -25,9 +25,9 @@ public class InfiniteScrollManager:MonoBehaviour
     }
     private void Update()
     {
-        if (Game.Instance!=null&&Game.Instance.GameStarted)
+        if (Game.Instance!=null&&GameModel.Instance.GameStarted)
         {
-            m_mainCamera.transform.position += Vector3.down * Time.deltaTime;
+            m_mainCamera.transform.position += Vector3.down * Time.deltaTime*GameModel.Instance.ScrollSpeed;
         }
         checkIfNeedNewChunk();
         checkIfNeedDeleteOldChunk();

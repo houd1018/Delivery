@@ -17,7 +17,7 @@ namespace Isekai.UI.Views.Screens
         }
         public void OnClickPlayAgain()
         {
-            Game.Instance.GoToPlayScene();
+            Game.Instance.GoToZeueScene();
         }
         public void OnClickBackToMainMenu()
         {

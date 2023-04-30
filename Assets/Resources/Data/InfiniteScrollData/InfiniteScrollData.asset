@@ -12,10 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e328fb59b6773224c8883e81be3b83c7, type: 3}
   m_Name: InfiniteScrollData
   m_EditorClassIdentifier: 
-  Difficulty: 0
+  Difficulty: 1
   ChunkPrefabs:
   - {fileID: 2346017593677615372, guid: 9148310be6b9a2740abdd2a0f4cb97a1, type: 3}
   - {fileID: 2346017593677615372, guid: 41ffffea94dfb5445ac35e47926b11d9, type: 3}
   - {fileID: 2346017593677615372, guid: ad1c28ed82aa7564b91b0787b9952cc1, type: 3}
   - {fileID: 2346017593677615372, guid: 48d2581f9d02c8b4f9a188d7a0cdfe3c, type: 3}
-  HeavenBlocks: 000000000000000000000000
+  HeavenBlocks:
+  - Type: 0
+    BlockSprite: {fileID: 21300000, guid: 2d720e1e32bdae740afbc1c83389b63c, type: 3}
+  - Type: 0
+    BlockSprite: {fileID: 21300000, guid: 55a425392c4f547418991b9269f6650f, type: 3}
+  - Type: 0
+    BlockSprite: {fileID: 21300000, guid: ad08c1b79a8cee44fb9d333e8d3e91eb, type: 3}
+  EarthBlocks: []
+  HellBlocks: []
