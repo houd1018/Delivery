@@ -33,15 +33,9 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Run();
-        SwitchAnimation();
+        Walk();
+        // SwitchAnimation();
         SwitchStates();
-    }
-
-    void SwitchAnimation()
-    {
-        myAnimator.SetBool("Death", isDead);
-        myAnimator.SetBool("Walk", isWalk);
     }
 
     void SwitchStates()
@@ -61,7 +55,7 @@ public class PlayerController : MonoBehaviour
     private void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
-        
+
     }
     private void OnJump(InputValue value)
     {
@@ -72,14 +66,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Run()
+    private void Walk()
     {
         Vector2 playerVelocity = new Vector2(moveInput.x * runSpeed, rb.velocity.y);
         rb.velocity = playerVelocity;
-        isWalk = true;
+
+        // walking state check
+        bool HasHorizontalSpeed = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
+        myAnimator.SetBool("Walk", HasHorizontalSpeed);
     }
 
-// restrict moving in the camera scene
+    // restrict moving in the camera scene
     private void RestrictMove()
     {
         if (Math.Abs(transform.position.x) > Math.Abs(maxBounds.x))
