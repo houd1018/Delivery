@@ -11,6 +11,7 @@ public class BaseBlock : MonoBehaviour
     float offsetY=0.12f;
     float distance=2.88f;
     Vector3 offsetPos;
+    protected GameObject player;
 
     private bool m_isPlayerStand;
     protected bool IsPlayerStand
@@ -47,12 +48,14 @@ public class BaseBlock : MonoBehaviour
         var hit = Physics2D.Raycast(offsetPos, Vector2.right, distance * transform.localScale.x, m_layerMask);
         if (hit.collider != null)
         {
+            player = hit.collider.gameObject;
             IsPlayerStand = true;
             return;
         }
         hit = Physics2D.Raycast(offsetPos, Vector2.left, distance * transform.localScale.x, m_layerMask);
         if (hit.collider != null)
         {
+            player = hit.collider.gameObject;
             IsPlayerStand = true;
             return;
         }

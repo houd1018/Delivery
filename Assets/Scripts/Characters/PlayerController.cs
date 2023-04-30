@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     Animator myAnimator;
 
     bool isDead;
+    bool hasDamaged;
 
     private void Awake()
     {
@@ -106,9 +107,11 @@ public class PlayerController : MonoBehaviour
     void TopTrapDamage()
     {
         if (isDead) { return; }
-        if (transform.position.y >= Camera.main.ScreenToWorldPoint(new Vector3(0,Screen.height,0)).y)
+        if (!hasDamaged && transform.position.y >= Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, 0)).y)
         {
+            hasDamaged = true;
             characterStats.CurrentHealth -= 1;
+            StartCoroutine(WaitforTopTrapDamage());
         }
 
     }
@@ -122,7 +125,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-// update respwan point which is at the postion x seconds ago
+    IEnumerator WaitforTopTrapDamage()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        hasDamaged = false;
+    }
+
+    // update respwan point which is at the postion x seconds ago
     IEnumerator FindPositionThreeSceondsBefore()
     {
         while (true)
