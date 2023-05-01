@@ -200,7 +200,6 @@ public class PlayerController : MonoBehaviour
             {
                 blockQueue.Dequeue();
             }
-            Debug.Log(blockQueue.Peek());
         }
     }
 
