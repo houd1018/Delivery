@@ -15,6 +15,8 @@ public class InfiniteScrollManager:MonoBehaviour
     private float m_chunckHeight;
     [SerializeField]
     private float m_heartRatio = 0.2f;
+    [SerializeField]
+    private float m_difficultyGrow = 0.01f;
     [Header("CurLevel:")]
     [SerializeField]
     private CurLevel Level;
@@ -41,7 +43,8 @@ public class InfiniteScrollManager:MonoBehaviour
         if (Game.Instance!=null&&GameModel.Instance.GameStarted)
         {
             m_mainCamera.transform.position += Vector3.down * Time.deltaTime*GameModel.Instance.ScrollSpeed;
-            GameModel.Instance.ScrollSpeed = 1 + m_infiniteScrollData.Difficulty;
+            if(!GameModel.Instance.ScrollPaused)
+                GameModel.Instance.ScrollSpeed = 1 + m_infiniteScrollData.Difficulty*(int)Level;
         }
         checkIfNeedNewChunk();
         checkIfNeedDeleteOldChunk();
@@ -52,7 +55,7 @@ public class InfiniteScrollManager:MonoBehaviour
     }
     void checkLevelClear()
     {
-        m_infiniteScrollData.Difficulty += Time.deltaTime * 0.01f;
+        m_infiniteScrollData.Difficulty += Time.deltaTime * m_difficultyGrow;
         if (m_infiniteScrollData.Difficulty >= 1)
         {
             m_curLevelClear = true;

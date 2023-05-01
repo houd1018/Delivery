@@ -42,6 +42,17 @@ public class GameModel : Singleton<GameModel>
             m_scrollSpeed = value;
         }
     }
+
+    private bool m_scrollPaused;
+    public bool ScrollPaused
+    {
+        get => m_scrollPaused;
+        set
+        {
+            m_scrollPaused = value;
+        }
+    }
+
     public float OriginDepth;
     private float m_depth;
     public float Depth
@@ -70,6 +81,15 @@ public class GameModel : Singleton<GameModel>
         set
         {
             m_inTimeline = value;
+        }
+    }
+    private int m_transportTime;
+    public int TeleportTime
+    {
+        get => m_transportTime;
+        set
+        {
+            m_transportTime = value;
         }
     }
     public GameModel()
@@ -114,11 +134,13 @@ public class GameModel : Singleton<GameModel>
     void onPauseScroll(PauseScrollEvent e)
     {
         m_prevScrollSpeed = ScrollSpeed;
+        ScrollPaused = true;
         ScrollSpeed = 0;
     }
     void onResumeScroll(ResumeScrollEvent e)
     {
         ScrollSpeed = m_prevScrollSpeed;
+        ScrollPaused = false;
     }
     public void Reset()
     {
@@ -127,5 +149,7 @@ public class GameModel : Singleton<GameModel>
         ScrollSpeed = 0;
         OriginDepth = 0;
         Depth = 0;
+        TeleportTime = 3;
+        ScrollPaused = false;
     }
 }

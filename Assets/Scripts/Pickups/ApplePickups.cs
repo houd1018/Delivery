@@ -17,6 +17,7 @@ public class ApplePickups : MonoBehaviour
             // update health in SO objects
             var playerStates = other.GetComponent<CharacterStats>();
             playerStates.TakeApple(playerStates, healValue);
+            SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_apple);
 
             Destroy(gameObject);
         }
