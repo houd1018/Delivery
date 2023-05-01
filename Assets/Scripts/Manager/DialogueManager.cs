@@ -77,8 +77,15 @@ public class DialogueManager : MonoSingleton<DialogueManager>
         m_messageComplete = true;
         m_curOnMessageComplete += onDialogueComplete;
     }
+    public void SkipDialogue()
+    {
+        QueuedMessages.Clear();
+    }
     private void OnDestroy()
     {
-        Destroy(m_dialoguePanel.gameObject);
+        if (m_dialoguePanel != null)
+        {
+            Destroy(m_dialoguePanel.gameObject);
+        }
     }
 }

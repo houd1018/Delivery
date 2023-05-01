@@ -6,13 +6,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EarthToHellGate : MonoBehaviour, IInteractable
+public class Iris : BaseNPC
 {
-    public void Interact()
+    protected override void Start()
     {
-        GotoHell();
+        base.Start();
+        this.OnDialoguesComplete += GoToHellPopup;
+        this.OnRepeatDialogueComplete += GoToHellPopup;
     }
-    void GotoHell()
+    public void GoToHellPopup()
     {
         StartDeliverPopup popup = PopupManager.Instance.ShowPopup<StartDeliverPopup>(PopupType.StartDeliverPopup,
         new PopupData()

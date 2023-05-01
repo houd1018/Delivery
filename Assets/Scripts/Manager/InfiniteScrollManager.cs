@@ -38,12 +38,14 @@ public class InfiniteScrollManager:MonoBehaviour
         if (Game.Instance!=null&&GameModel.Instance.GameStarted)
         {
             m_mainCamera.transform.position += Vector3.down * Time.deltaTime*GameModel.Instance.ScrollSpeed;
+            GameModel.Instance.ScrollSpeed = 1 + m_infiniteScrollData.Difficulty;
         }
         checkIfNeedNewChunk();
         checkIfNeedDeleteOldChunk();
         checkLevelClear();
         checkScrollStop();
         setCurDepth();
+        
     }
     void checkLevelClear()
     {
