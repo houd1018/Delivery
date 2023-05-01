@@ -15,6 +15,8 @@ namespace Isekai.UI.Views.Screens
         [SerializeField]
         private Transform m_curHealth;
         [SerializeField]
+        private Transform m_teleportTime;
+        [SerializeField]
         private TextMeshProUGUI m_depth;
         public override void OnEnterScreen()
         {
@@ -36,7 +38,11 @@ namespace Isekai.UI.Views.Screens
                 SetCurHealth(ViewModel.m_playerData.currentHealth);
                 SetMaxHealth(ViewModel.m_playerData.maxHealth);
             }
-
+            refreshTeleport();
+        }
+        void refreshTeleport()
+        {
+            SetTeleportTime(GameModel.Instance.TeleportTime);
         }
         public void SetCurHealth(int health)
         {
@@ -58,6 +64,18 @@ namespace Isekai.UI.Views.Screens
             for (int i = 0; i < health; i++)
             {
                 m_maxHealth.GetChild(i).gameObject.SetActive(true);
+            }
+        }
+
+        public void SetTeleportTime(int time)
+        {
+            foreach (Transform item in m_teleportTime)
+            {
+                item.gameObject.SetActive(false);
+            }
+            for (int i = 0; i < GameModel.Instance.TeleportTime; i++)
+            {
+                m_teleportTime.GetChild(i).gameObject.SetActive(true);
             }
         }
         public void SetDepth(int depth)

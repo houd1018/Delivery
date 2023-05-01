@@ -149,7 +149,7 @@ public class GameModel : Singleton<GameModel>
         ScrollSpeed = 0;
         OriginDepth = 0;
         Depth = 0;
-        TeleportTime = 3;
+        TeleportTime = 0;
         ScrollPaused = false;
     }
 }

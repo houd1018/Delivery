@@ -15,6 +15,7 @@ public class IrisFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameModel.Instance.TeleportTime = 3;
         recordPlayerLastPos().Forget();
         checkTeleport().Forget();
     }
@@ -38,6 +39,7 @@ public class IrisFollow : MonoBehaviour
     {
         while (true)
         {
+            
             if (GameModel.Instance.TeleportTime <= 0)
             {
                 break;
