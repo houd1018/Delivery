@@ -47,8 +47,20 @@ public class BaseChunk : MonoBehaviour
     {
         switch (type)
         {
-            case BlockType.TestBlock1:
+            case BlockType.BounceBlock:
+                block.AddComponent<TestBounceBlock>();
+                break;
+            case BlockType.ConveyBlock:
+                block.AddComponent<TestConveyBlock>();
+                break;
+            case BlockType.DisappearBlock:
                 block.AddComponent<TestDisappearBlock>();
+                break;
+            case BlockType.MovingBlock:
+                block.AddComponent<TestMovingBlock>();
+                break;
+            case BlockType.TrapBlock:
+                block.AddComponent<TestTrapBlock>();
                 break;
             default:
                 break;

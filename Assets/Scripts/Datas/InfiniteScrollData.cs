@@ -4,7 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum BlockType
 {
-    TestBlock1,
+    BounceBlock,
+    ConveyBlock,
+    DisappearBlock,
+    MovingBlock,
+    TrapBlock
 }
 [Serializable]
 public class BlockData
@@ -20,6 +24,9 @@ public class InfiniteScrollData : ScriptableObject
     public BlockData[] HeavenBlocks;
     public BlockData[] EarthBlocks;
     public BlockData[] HellBlocks;
+    public GameObject HeavenLastChunk;
+    public GameObject EarthLastChunk;
+    public GameObject HellLastChunk;
 
     public void Reset()
     {

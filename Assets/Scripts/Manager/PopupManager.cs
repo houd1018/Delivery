@@ -16,10 +16,10 @@ public class PopupData
 }
 public class PopupManager : MonoSingleton<PopupManager>
 {
-    public IPopup ShowPopup<T>(PopupType Type, PopupData data)
+    public T ShowPopup<T>(PopupType Type, PopupData data) where T:MonoBehaviour,IPopup
     {
         var prefab = Resources.Load<GameObject>("Prefabs/UI/Popup/" + Type.ToString());
-        IPopup popup = Instantiate(prefab, LayerManager.Instance.GetLayer(ELayerType.PopupLayer)).GetComponent<IPopup>();
+        T popup = Instantiate(prefab, LayerManager.Instance.GetLayer(ELayerType.PopupLayer)).GetComponent<T>();
         popup.Data = data;
         return popup;
     }

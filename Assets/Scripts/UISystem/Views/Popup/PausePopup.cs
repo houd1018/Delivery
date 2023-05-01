@@ -2,6 +2,7 @@ using Isekai.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PausePopup : MonoBehaviour, IPopup
 {
@@ -18,4 +19,6 @@ public class PausePopup : MonoBehaviour, IPopup
         Data.OnConfirmClicked();
         Destroy(gameObject);
     }
+
+
 }
