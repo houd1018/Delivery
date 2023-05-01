@@ -44,7 +44,7 @@ public class InfiniteScrollManager:MonoBehaviour
         {
             m_mainCamera.transform.position += Vector3.down * Time.deltaTime*GameModel.Instance.ScrollSpeed;
             if(!GameModel.Instance.ScrollPaused)
-                GameModel.Instance.ScrollSpeed = 1 + m_infiniteScrollData.Difficulty*(int)Level;
+                GameModel.Instance.ScrollSpeed = 1 + m_infiniteScrollData.Difficulty*((int)Level+1);
         }
         checkIfNeedNewChunk();
         checkIfNeedDeleteOldChunk();
@@ -103,7 +103,7 @@ public class InfiniteScrollManager:MonoBehaviour
     {
         //If chunk % 5=0, then spawn golden apple
         Debug.Log(m_totalChunks);
-        if (m_totalChunks % 5 == 0)
+        if (m_totalChunks % 5 == 0&&m_totalChunks!=0)
         {
             go.GetComponent<BaseChunk>().SpawnGoldenApple = true;
         }
@@ -127,7 +127,7 @@ public class InfiniteScrollManager:MonoBehaviour
     private void setCurDepth()
     {
 
-        GameModel.Instance.Depth = GameModel.Instance.OriginDepth + m_mainCamera.ScreenToWorldPoint(Vector3.zero).y;
+        GameModel.Instance.Depth = GameModel.Instance.OriginDepth + m_mainCamera.ScreenToWorldPoint(Vector3.zero).y * 100;
         
     }
     GameObject getLastChunk()
@@ -154,7 +154,7 @@ public class InfiniteScrollManager:MonoBehaviour
     }
     private void OnDestroy()
     {
-        GameModel.Instance.OriginDepth += m_lastPosition;
+        GameModel.Instance.OriginDepth += m_lastPosition*100;
         EventSystem.Instance.Unsubscribe<GameStartEvent>(typeof(GameStartEvent), onGameStart);
         EventSystem.Instance.Unsubscribe<GameOverEvent>(typeof(GameOverEvent), onGameOver);
     }

@@ -31,6 +31,7 @@ public class Iris : BaseNPC
         GameModel.Instance.GameStarted = false;
         LevelManager.Instance.TransitionToScene("Hell", () =>
         {
+            GameModel.Instance.OriginDepth = 0;
             EventSystem.Instance.SendEvent(typeof(GameStartEvent), new GameStartEvent());
             var playerdata = Resources.Load<CharacterStats_SO>("Data/CharacterData/PlayerData");
             ScreenManager.Instance.TransitionToInstant<HUDScreenViewModel>(Isekai.UI.EScreenType.HUDScreen, ELayerType.HUDLayer,

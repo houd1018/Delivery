@@ -1,4 +1,6 @@
+using Cysharp.Threading.Tasks;
 using Isekai.Managers;
+using Isekai.UI.ViewModels.Screens;
 using MyPackage;
 using System;
 using System.Collections;
@@ -175,7 +177,7 @@ public class PlayerController : MonoBehaviour
                         new PopupData()
                         {
                             OnCancelClicked = Game.Instance.OnClickBackToMenu,
-                            OnConfirmClicked = Game.Instance.GoToZeusScene
+                            OnConfirmClicked = OnClickPlayAgain
                         });
                     popup.SetTitle("Mission Failed");
                     popup.SetConfirmButton("Retry");
@@ -183,7 +185,21 @@ public class PlayerController : MonoBehaviour
                 });
         }
     }
+    public void OnClickPlayAgain()
+    {
+        LevelManager.Instance.TransitionToScene("Heaven", () =>
+        {
+            EventSystem.Instance.SendEvent(typeof(GameStartEvent), new GameStartEvent());
+            var playerdata = Resources.Load<CharacterStats_SO>("Data/CharacterData/PlayerData");
+            playerdata.currentHealth = 1;
+            playerdata.maxHealth = 1;
+            ScreenManager.Instance.TransitionToInstant<HUDScreenViewModel>(Isekai.UI.EScreenType.HUDScreen, ELayerType.HUDLayer,
+            new HUDScreenViewModel(playerdata)
+            {
 
+            });
+        }).Forget();
+    }
     // void CheckDash()
     // {
     //     if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)

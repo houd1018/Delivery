@@ -118,6 +118,7 @@ public class GameModel : Singleton<GameModel>
         ScrollSpeed = 0;
         GameStarted = true;
         ScrollSpeed = 1;
+        EventSystem.Instance.SendEvent<ResumeGameEvent>(typeof(ResumeGameEvent), new ResumeGameEvent());
     }
     void onGameOver(GameOverEvent e)
     {
@@ -147,7 +148,7 @@ public class GameModel : Singleton<GameModel>
         GameStarted = false;
         CurLevel = CurLevel.Heaven;
         ScrollSpeed = 0;
-        OriginDepth = 0;
+        OriginDepth = 30000;
         Depth = 0;
         TeleportTime = 0;
         ScrollPaused = false;
