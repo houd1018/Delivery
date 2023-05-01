@@ -30,6 +30,7 @@ public class Hades : BaseNPC
         GameModel.Instance.GameStarted = false;
         LevelManager.Instance.TransitionToScene("ZeusScene", () =>
         {
+            EventSystem.Instance.SendEvent(typeof(GameOverEvent), new GameOverEvent());
             EventSystem.Instance.SendEvent(typeof(GameStartEvent), new GameStartEvent());
         }).Forget();
     }

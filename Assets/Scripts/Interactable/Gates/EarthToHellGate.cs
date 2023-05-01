@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Isekai.Managers;
+using Isekai.UI.ViewModels.Screens;
 using MyPackage;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,6 +30,12 @@ public class EarthToHellGate : MonoBehaviour, IInteractable
         LevelManager.Instance.TransitionToScene("Hell", () =>
         {
             EventSystem.Instance.SendEvent(typeof(GameStartEvent), new GameStartEvent());
+            var playerdata = Resources.Load<CharacterStats_SO>("Data/CharacterData/PlayerData");
+            ScreenManager.Instance.TransitionToInstant<HUDScreenViewModel>(Isekai.UI.EScreenType.HUDScreen, ELayerType.HUDLayer,
+            new HUDScreenViewModel(playerdata)
+            {
+
+            });
         }).Forget();
     }
 }
