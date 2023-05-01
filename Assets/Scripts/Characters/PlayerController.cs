@@ -8,16 +8,18 @@ using UnityEngine.InputSystem;
 public enum PlayerStates { WALK, DEAD, JUMP }
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private int respawnBlockDistance = 2;
     [SerializeField] private float runSpeed = 10f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float respawnDelay = 3f;
 
+    private Queue<Transform> blockQueue;
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Vector2 maxBounds;
     private CharacterStats characterStats;
     private PlayerStates playerStates;
-    private Vector3 postionThreeSecondsBefore;
+    private Vector3 postionThreeSecondsBefore; // Obsolete
     CapsuleCollider2D myBodyCollider;
     BoxCollider2D myFeetCollider;
     Animator myAnimator;
@@ -36,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(FindPositionThreeSceondsBefore());
+        blockQueue = new Queue<Transform>(respawnBlockDistance);
     }
 
     private void FixedUpdate()
@@ -120,12 +122,16 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    // Fall and Respawn
     void Fall()
     {
         if (isDead) { return; }
         if (transform.position.y <= Camera.main.ScreenToWorldPoint(Vector3.zero).y)
         {
-            transform.position = postionThreeSecondsBefore;
+            Vector3 offset = new Vector3(0f, 1f, 0f);
+            Vector3 respawnPoint = blockQueue.Peek().position + offset;
+            transform.position = respawnPoint;
             characterStats.CurrentHealth -= 1;
         }
     }
@@ -151,6 +157,7 @@ public class PlayerController : MonoBehaviour
         hasDamaged = false;
     }
 
+    // Obsolete
     // update respwan point which is at the postion x seconds ago
     IEnumerator FindPositionThreeSceondsBefore()
     {
@@ -161,6 +168,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            if (!blockQueue.Contains(other.gameObject.transform))
+            {
+                blockQueue.Enqueue(other.gameObject.transform);
+            }
+            if (blockQueue.Count > respawnBlockDistance)
+            {
+                blockQueue.Dequeue();
+            }
+            Debug.Log(blockQueue.Peek());
+        }
+    }
 
 
 }
