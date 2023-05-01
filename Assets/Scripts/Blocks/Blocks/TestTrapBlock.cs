@@ -23,7 +23,10 @@ public class TestTrapBlock : BaseBlock
         {
             player.GetComponent<CharacterStats>().CurrentHealth -= damage;
             hasDamaged = true;
-            StartCoroutine(WaitForNextDamage());
+        }
+        if (PlayerStandTime == 0)
+        { 
+            hasDamaged = false;
         }
     }
     IEnumerator WaitForNextDamage()
@@ -31,5 +34,7 @@ public class TestTrapBlock : BaseBlock
         yield return new WaitForSecondsRealtime(damageRate);
         hasDamaged = false;
     }
+
+    // player.GetComponent<CharacterStats>().CurrentHealth -= damage;
 
 }

@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
         FlipSprite();
         TopTrapDamage();
         Fall();
-        CheckDash();
+        // CheckDash();
         checkGameStarted();
         checkIsDead();
     }
@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour
         {
             hasDamaged = true;
             characterStats.CurrentHealth -= 1;
-            StartCoroutine(WaitforTopTrapDamage());
+            StartCoroutine(WaitforTrapDamage());
         }
 
     }
@@ -136,12 +136,14 @@ public class PlayerController : MonoBehaviour
     void Fall()
     {
         if (isDead) { return; }
-        if (transform.position.y <= Camera.main.ScreenToWorldPoint(Vector3.zero).y)
+        if (!hasDamaged && transform.position.y <= Camera.main.ScreenToWorldPoint(Vector3.zero).y)
         {
+            hasDamaged = true;
             Vector3 offset = new Vector3(0f, 1f, 0f);
             Vector3 respawnPoint = blockQueue.Peek().position + offset;
             transform.position = respawnPoint;
             characterStats.CurrentHealth -= 1;
+            StartCoroutine(WaitforTrapDamage());
         }
     }
     void checkGameStarted()
@@ -182,15 +184,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void CheckDash()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
-        {
-            Vector2 direction = new Vector2(Input.GetAxisRaw("Horizontal"), Math.Abs(Input.GetAxisRaw("Vertical")));
-            StartCoroutine(Dash(direction));
-        }
-    }
-    IEnumerator WaitforTopTrapDamage()
+    // void CheckDash()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
+    //     {
+    //         Vector2 direction = new Vector2(Input.GetAxisRaw("Horizontal"), Math.Abs(Input.GetAxisRaw("Vertical")));
+    //         StartCoroutine(Dash(direction));
+    //     }
+    // }
+    IEnumerator WaitforTrapDamage()
     {
         yield return new WaitForSecondsRealtime(2f);
         hasDamaged = false;
@@ -206,21 +208,21 @@ public class PlayerController : MonoBehaviour
             postionThreeSecondsBefore = transform.position;
         }
     }
-    IEnumerator Dash(Vector2 direction)
-    {
-        isDashing = true;
-        trailRenderer.emitting = true;
-        myFeetCollider.enabled = false;
-        myBodyCollider.enabled = false;
+    // IEnumerator Dash(Vector2 direction)
+    // {
+    //     isDashing = true;
+    //     trailRenderer.emitting = true;
+    //     myFeetCollider.enabled = false;
+    //     myBodyCollider.enabled = false;
 
-        rb.AddForce(direction.normalized * dashSpeed, ForceMode2D.Impulse);
-        yield return new WaitForSeconds(dashDuration);
+    //     rb.AddForce(direction.normalized * dashSpeed, ForceMode2D.Impulse);
+    //     yield return new WaitForSeconds(dashDuration);
 
-        isDashing = false;
-        trailRenderer.emitting = false;
-        myFeetCollider.enabled = true;
-        myBodyCollider.enabled = true;
-    }
+    //     isDashing = false;
+    //     trailRenderer.emitting = false;
+    //     myFeetCollider.enabled = true;
+    //     myBodyCollider.enabled = true;
+    // }
 
 
     private void OnCollisionStay2D(Collision2D other)

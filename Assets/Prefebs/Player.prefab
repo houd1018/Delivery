@@ -257,7 +257,6 @@ MonoBehaviour:
   respawnDelay: 5
   dashDuration: 0.5
   dashSpeed: 10
-  DashSpeed: 10
 --- !u!114 &1290855139698966878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,7 +296,7 @@ TrailRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7487951814263264974}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
