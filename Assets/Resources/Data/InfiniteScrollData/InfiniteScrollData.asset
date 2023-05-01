@@ -58,7 +58,7 @@ MonoBehaviour:
   - Type: 3
     BlockSprite: {fileID: 21300000, guid: 456c77436b2acc745adc1493572f91b4, type: 3}
   - Type: 4
-    BlockSprite: {fileID: 21300000, guid: 456c77436b2acc745adc1493572f91b4, type: 3}
+    BlockSprite: {fileID: 21300000, guid: 17025bc4e3433de498ec8ff97ecc4845, type: 3}
   HeavenLastChunk: {fileID: 2346017593677615372, guid: 9148310be6b9a2740abdd2a0f4cb97a1, type: 3}
   EarthLastChunk: {fileID: 2346017593677615372, guid: 28d096f89e277bd4c99d36cf10ff011b, type: 3}
   HellLastChunk: {fileID: 2346017593677615372, guid: 2af59f371c6ed4b46bbe15088e883ecb, type: 3}
