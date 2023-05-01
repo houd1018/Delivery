@@ -53,8 +53,12 @@ namespace Isekai.Managers
     }
     public class Game : MonoSingleton<Game>
     {
+        
         async void Start()
         {
+#if UNITY_STANDALONE
+            Screen.SetResolution(480, 704, false);
+#endif
             await InitializeManagers();
 
             MainMenuViewModel viewmodel = new MainMenuViewModel();

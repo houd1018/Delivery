@@ -32,6 +32,10 @@ namespace Isekai.UI.Views.Screens
             SettingsViewModel viewmodel = new SettingsViewModel();
             ScreenManager.Instance.TransitionTo(EScreenType.SettingsScreen, ELayerType.DefaultLayer, viewmodel).Forget();
         }
+        public void OnQuitClick()
+        {
+            Application.Quit();
+        }
 
     }
 
