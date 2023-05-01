@@ -83,13 +83,13 @@ namespace Isekai.Managers
             { 
                 GameModel.Instance.GameStarted = true;
                 var playerdata = Resources.Load<CharacterStats_SO>("Data/CharacterData/PlayerData");
-                playerdata.maxHealth = 0;
-                playerdata.currentHealth = 0;
-                ScreenManager.Instance.TransitionToInstant<HUDScreenViewModel>(Isekai.UI.EScreenType.HUDScreen, ELayerType.HUDLayer,
+                playerdata.maxHealth = 1;
+                playerdata.currentHealth = 1;
+/*                ScreenManager.Instance.TransitionToInstant<HUDScreenViewModel>(Isekai.UI.EScreenType.HUDScreen, ELayerType.HUDLayer,
                 new HUDScreenViewModel(playerdata)
                 {
 
-                });
+                });*/
             } ).Forget();
         }
         public void PauseGame()

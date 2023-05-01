@@ -154,22 +154,25 @@ public class PlayerController : MonoBehaviour
     }
     void checkIsDead()
     {
-/*        var dialogues = Resources.Load<DialogueDatas>("Data/RandomDeathDialogue/RandomDeathDialogues");
-        if (isDead&&GameModel.Instance.CurLevel!=CurLevel.None)
+        var dialogues = Resources.Load<DialogueDatas>("Data/RandomDeathDialogue/RandomDeathDialogues");
+        if (isDead&&GameModel.Instance.GameStarted)
         {
             Game.Instance.PauseGame();
             DialogueManager.Instance.PushMessages(dialogues.Dialogues[UnityEngine.Random.Range((int)0, dialogues.Dialogues.Length)].Dialogues,
-                ()=>
+                () =>
                 {
                     EventSystem.Instance.SendEvent<GameOverEvent>(typeof(GameOverEvent), new GameOverEvent());
                     var popup = PopupManager.Instance.ShowPopup<StartDeliverPopup>(PopupType.StartDeliverPopup,
-                        new PopupData() {OnCancelClicked = Game.Instance.OnClickBackToMenu,
-                                         OnConfirmClicked = Game.Instance.GoToZeusScene });
+                        new PopupData()
+                        {
+                            OnCancelClicked = Game.Instance.OnClickBackToMenu,
+                            OnConfirmClicked = Game.Instance.GoToZeusScene
+                        });
                     popup.SetTitle("Mission Failed");
                     popup.SetConfirmButton("Retry");
                     popup.SetCancelButton("Back");
                 });
-        }*/
+        }
     }
     IEnumerator WaitforTopTrapDamage()
     {
