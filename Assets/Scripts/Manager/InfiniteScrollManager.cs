@@ -13,9 +13,12 @@ public class InfiniteScrollManager:MonoBehaviour
     private float m_startPos;
     [SerializeField]
     private float m_chunckHeight;
+    [SerializeField]
+    private float m_heartRatio = 0.2f;
     [Header("CurLevel:")]
     [SerializeField]
     private CurLevel Level;
+    
 
     private int m_totalChunks;
     private Camera m_mainCamera;
@@ -49,7 +52,7 @@ public class InfiniteScrollManager:MonoBehaviour
     }
     void checkLevelClear()
     {
-        m_infiniteScrollData.Difficulty += Time.deltaTime * 0.05f;
+        m_infiniteScrollData.Difficulty += Time.deltaTime * 0.01f;
         if (m_infiniteScrollData.Difficulty >= 1)
         {
             m_curLevelClear = true;
@@ -72,7 +75,11 @@ public class InfiniteScrollManager:MonoBehaviour
             if (!m_curLevelClear)
             {
                 var go = Instantiate(m_infiniteScrollData.ChunkPrefabs[Random.Range((int)0, m_infiniteScrollData.ChunkPrefabs.Length)], Parent);
+
+                spawnAppleAndHeart(go);
+
                 go.GetComponent<BaseChunk>().Level = Level;
+                
                 go.transform.localPosition = new Vector3(0, m_startPos - m_totalChunks * m_chunckHeight, 0);
                 m_chunks.Enqueue(go.transform);
                 m_totalChunks++;
@@ -89,7 +96,20 @@ public class InfiniteScrollManager:MonoBehaviour
             }
         }
     }
-
+    private void spawnAppleAndHeart(GameObject go)
+    {
+        //If chunk % 5=0, then spawn golden apple
+        Debug.Log(m_totalChunks);
+        if (m_totalChunks % 5 == 0)
+        {
+            go.GetComponent<BaseChunk>().SpawnGoldenApple = true;
+        }
+        if(Random.Range(0f,1f) < m_heartRatio)
+        {
+            go.GetComponent<BaseChunk>().SpawnHeart = true;
+        }
+        
+    }
     private void checkIfNeedDeleteOldChunk()
     {
         float topPos = m_mainCamera.ScreenToWorldPoint(new Vector3(0,Screen.height,0)).y;

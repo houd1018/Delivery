@@ -5,19 +5,26 @@ using UnityEngine;
 public class BaseChunk : MonoBehaviour
 {
     public CurLevel Level;
+    public bool SpawnGoldenApple;
+    public bool SpawnHeart;
 
     [SerializeField]
     private InfiniteScrollData m_scrollData;
     private List<GameObject> Blocks;
-
+    private GameObject goldenApple;
+    private GameObject heart;
     // Start is called before the first frame update
     void Start()
     {
+        goldenApple = Resources.Load<GameObject>("Prefabs/GameObject/Apple");
+        heart = Resources.Load<GameObject>("Prefabs/Gameobject/Heart");
         m_scrollData = Resources.Load<InfiniteScrollData>("Data/InfiniteScrollData/InfiniteScrollData");
         Blocks = new List<GameObject>();
+        
         foreach (Transform item in transform.Find("Floors"))
         {
             Blocks.Add(item.gameObject);
+            
             item.GetComponent<SpriteRenderer>().sprite = GetNormalSprite();
             if (m_scrollData.Difficulty > Random.Range(0f,1f))
             {
@@ -27,7 +34,7 @@ public class BaseChunk : MonoBehaviour
                 assignBlockFunction(item.gameObject, data.Type);
             }
         }
-        
+        trySpawnGoldenAppleAndHeart();
     }
     Sprite GetNormalSprite()
     {
@@ -55,6 +62,21 @@ public class BaseChunk : MonoBehaviour
                 return m_scrollData.HellBlocks[Random.Range((int)1, (int)m_scrollData.HellBlocks.Length)]; 
             default:
                 return default;                
+        }
+    }
+    public void trySpawnGoldenAppleAndHeart()
+    {
+        if (SpawnGoldenApple && Level == CurLevel.Heaven)
+        {
+            var parent = Blocks[Random.Range((int)0, (int)Blocks.Count)].transform;
+            var go = Instantiate(goldenApple, parent.position+Vector3.up,Quaternion.identity);
+            go.transform.SetParent(parent);
+        }
+        if (SpawnHeart)
+        {
+            var parent = Blocks[Random.Range((int)0, (int)Blocks.Count)].transform;
+            var go = Instantiate(heart, parent.position + Vector3.up, Quaternion.identity);
+            go.transform.SetParent(parent);
         }
     }
     private void assignBlockFunction(GameObject block,BlockType type)

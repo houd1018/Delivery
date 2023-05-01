@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ApplePickups : MonoBehaviour
+public class HeartPickups : MonoBehaviour
 {
     [SerializeField] int healValue;
     [SerializeField]
@@ -11,19 +11,18 @@ public class ApplePickups : MonoBehaviour
     private bool m_isEat;
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player" && m_playerData.maxHealth<3&&!m_isEat)
+        if (other.tag == "Player" && m_playerData.currentHealth < m_playerData.maxHealth && !m_isEat)
         {
             m_isEat = true;
             // update health in SO objects
             var playerStates = other.GetComponent<CharacterStats>();
-            playerStates.TakeApple(playerStates, healValue);
+            playerStates.TakeHeart(playerStates, healValue);
 
             Destroy(gameObject);
         }
-        else if(other.tag == "Player")
+        else if (other.tag == "Player")
         {
             Destroy(gameObject);
         }
     }
-
 }

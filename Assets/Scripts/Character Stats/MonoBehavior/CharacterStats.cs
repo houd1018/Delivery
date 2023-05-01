@@ -51,5 +51,9 @@ public class CharacterStats : MonoBehaviour
         MaxHealth += healValue;
         // TODO: Update UI
     }
+    public void TakeHeart(CharacterStats player, int healValue)
+    {
+        CurrentHealth += healValue;
+    }
 
 }

@@ -257,6 +257,7 @@ MonoBehaviour:
   respawnDelay: 5
   dashDuration: 0.5
   dashSpeed: 10
+  DashSpeed: 10
 --- !u!114 &1290855139698966878
 MonoBehaviour:
   m_ObjectHideFlags: 0
