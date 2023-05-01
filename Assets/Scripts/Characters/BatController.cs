@@ -14,7 +14,6 @@ public class BatController : MonoBehaviour
     private void Start()
     {
         fire = transform.GetChild(1).gameObject;
-        Debug.Log(fire);
         StartCoroutine(CastRay());
     }
 
@@ -25,6 +24,8 @@ public class BatController : MonoBehaviour
             if (m_infiniteScrollData.Difficulty > enableBatDifficulty)
             {
                 fire.SetActive(!fire.activeSelf);
+            }else{
+                fire.SetActive(false);
             }
             yield return new WaitForSecondsRealtime(fireRate);
         }
