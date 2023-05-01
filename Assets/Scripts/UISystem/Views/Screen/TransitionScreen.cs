@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -13,6 +14,7 @@ public class TransitionScreen : MonoBehaviour
     private float m_transitionTime;
 
     private CancellationTokenSource m_tokenSource;
+    private Action m_onTransitionOut;
     private void Start()
     {
         m_transitionTime = 0.3f;
@@ -34,12 +36,18 @@ public class TransitionScreen : MonoBehaviour
         m_tokenSource.Dispose();
         m_tokenSource = new CancellationTokenSource();
         await SetAlphaSmoothly(0, m_transitionTime);
+        m_onTransitionOut?.Invoke();
+        m_onTransitionOut = default;
     }
     public void StopTransition()
     {
         m_tokenSource.Cancel();
         m_tokenSource.Dispose();
         m_tokenSource = new CancellationTokenSource();
+    }
+    public void SetOnTransitionOut(Action onTransitionOut)
+    {
+        m_onTransitionOut += onTransitionOut;
     }
 
     public void SetTransitionTime(float time)

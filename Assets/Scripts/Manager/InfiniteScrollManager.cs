@@ -38,11 +38,14 @@ public class InfiniteScrollManager:MonoBehaviour
         if (Game.Instance!=null&&GameModel.Instance.GameStarted)
         {
             m_mainCamera.transform.position += Vector3.down * Time.deltaTime*GameModel.Instance.ScrollSpeed;
+            GameModel.Instance.ScrollSpeed = 1 + m_infiniteScrollData.Difficulty;
         }
         checkIfNeedNewChunk();
         checkIfNeedDeleteOldChunk();
         checkLevelClear();
         checkScrollStop();
+        setCurDepth();
+        
     }
     void checkLevelClear()
     {
@@ -77,7 +80,7 @@ public class InfiniteScrollManager:MonoBehaviour
             else if(!m_lastChunkInstantiated)
             {
                 m_lastChunkInstantiated = true;
-                var go = Instantiate(getLasetChunk(), Parent);
+                var go = Instantiate(getLastChunk(), Parent);
                 go.GetComponent<BaseChunk>().Level = Level;
                 go.transform.localPosition = new Vector3(0, m_startPos - m_totalChunks * m_chunckHeight, 0);
                 m_chunks.Enqueue(go.transform);
@@ -97,7 +100,14 @@ public class InfiniteScrollManager:MonoBehaviour
             DestroyImmediate(tf.gameObject);
         }
     }
-    GameObject getLasetChunk()
+
+    private void setCurDepth()
+    {
+
+        GameModel.Instance.Depth = GameModel.Instance.OriginDepth + m_mainCamera.ScreenToWorldPoint(Vector3.zero).y;
+        
+    }
+    GameObject getLastChunk()
     {
         switch (Level)
         {
@@ -121,6 +131,7 @@ public class InfiniteScrollManager:MonoBehaviour
     }
     private void OnDestroy()
     {
+        GameModel.Instance.OriginDepth += m_lastPosition;
         EventSystem.Instance.Unsubscribe<GameStartEvent>(typeof(GameStartEvent), onGameStart);
         EventSystem.Instance.Unsubscribe<GameOverEvent>(typeof(GameOverEvent), onGameOver);
     }

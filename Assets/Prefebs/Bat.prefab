@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 2
+  enableBatDifficulty: 0.5
+  m_infiniteScrollData: {fileID: 11400000, guid: fc93570f141acbe4488de1c657799e5f, type: 2}
 --- !u!1 &5592396505386356635
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,7 +172,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5592396505475010355
 Transform:
   m_ObjectHideFlags: 0

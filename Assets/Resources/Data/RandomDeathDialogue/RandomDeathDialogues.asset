@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec0ac272610ff8848a86efc68eec97e1, type: 3}
+  m_Name: RandomDeathDialogues
+  m_EditorClassIdentifier: 
+  DialogueCounter: 0
+  Dialogues:
+  - {fileID: 11400000, guid: 8e1017dec38aa8041a89a61ebfc688cd, type: 2}
+  - {fileID: 11400000, guid: 8a87a9334eb13b24b814ab514d2d7305, type: 2}
+  - {fileID: 11400000, guid: df0002ab207931641b48ad65e0d9da45, type: 2}
+  - {fileID: 11400000, guid: d94be9cc78234fa48802409915f7f612, type: 2}
+  - {fileID: 11400000, guid: c5328479b2a83864c81c3eec8f47c16e, type: 2}
+  - {fileID: 11400000, guid: 5dc01459b1063f842a0f84705754f8a4, type: 2}

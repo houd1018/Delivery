@@ -1,4 +1,5 @@
 using Isekai.Managers;
+using MyPackage;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,16 +9,23 @@ using UnityEngine.InputSystem;
 public enum PlayerStates { WALK, DEAD, JUMP }
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private int respawnBlockDistance = 2;
     [SerializeField] private float runSpeed = 10f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float respawnDelay = 3f;
 
+    [SerializeField] private float dashDuration = 0.01f;
+    [SerializeField] private float dashSpeed = 2f;
+
+    private bool isDashing;
+    private Queue<Transform> blockQueue;
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Vector2 maxBounds;
     private CharacterStats characterStats;
     private PlayerStates playerStates;
-    private Vector3 postionThreeSecondsBefore;
+    private TrailRenderer trailRenderer;
+    private Vector3 postionThreeSecondsBefore; // Obsolete
     CapsuleCollider2D myBodyCollider;
     BoxCollider2D myFeetCollider;
     Animator myAnimator;
@@ -32,11 +40,12 @@ public class PlayerController : MonoBehaviour
         myFeetCollider = GetComponent<BoxCollider2D>();
         myAnimator = GetComponentInChildren<Animator>();
         characterStats = GetComponent<CharacterStats>();
+        trailRenderer = GetComponent<TrailRenderer>();
     }
 
     private void Start()
     {
-        StartCoroutine(FindPositionThreeSceondsBefore());
+        blockQueue = new Queue<Transform>(respawnBlockDistance);
     }
 
     private void FixedUpdate()
@@ -51,7 +60,9 @@ public class PlayerController : MonoBehaviour
         FlipSprite();
         TopTrapDamage();
         Fall();
+        CheckDash();
         checkGameStarted();
+        checkIsDead();
     }
     void SwitchStates()
     {
@@ -120,12 +131,16 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    // Fall and Respawn
     void Fall()
     {
         if (isDead) { return; }
         if (transform.position.y <= Camera.main.ScreenToWorldPoint(Vector3.zero).y)
         {
-            transform.position = postionThreeSecondsBefore;
+            Vector3 offset = new Vector3(0f, 1f, 0f);
+            Vector3 respawnPoint = blockQueue.Peek().position + offset;
+            transform.position = respawnPoint;
             characterStats.CurrentHealth -= 1;
         }
     }
@@ -144,13 +159,44 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+    void checkIsDead()
+    {
+        var dialogues = Resources.Load<DialogueDatas>("Data/RandomDeathDialogue/RandomDeathDialogues");
+        if (isDead && GameModel.Instance.GameStarted)
+        {
+            Game.Instance.PauseGame();
+            DialogueManager.Instance.PushMessages(dialogues.Dialogues[UnityEngine.Random.Range((int)0, dialogues.Dialogues.Length)].Dialogues,
+                () =>
+                {
+                    EventSystem.Instance.SendEvent<GameOverEvent>(typeof(GameOverEvent), new GameOverEvent());
+                    var popup = PopupManager.Instance.ShowPopup<StartDeliverPopup>(PopupType.StartDeliverPopup,
+                        new PopupData()
+                        {
+                            OnCancelClicked = Game.Instance.OnClickBackToMenu,
+                            OnConfirmClicked = Game.Instance.GoToZeusScene
+                        });
+                    popup.SetTitle("Mission Failed");
+                    popup.SetConfirmButton("Retry");
+                    popup.SetCancelButton("Back");
+                });
+        }
+    }
 
+    void CheckDash()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
+        {
+            Vector2 direction = new Vector2(Input.GetAxisRaw("Horizontal"), Math.Abs(Input.GetAxisRaw("Vertical")));
+            StartCoroutine(Dash(direction));
+        }
+    }
     IEnumerator WaitforTopTrapDamage()
     {
         yield return new WaitForSecondsRealtime(2f);
         hasDamaged = false;
     }
 
+    // Obsolete
     // update respwan point which is at the postion x seconds ago
     IEnumerator FindPositionThreeSceondsBefore()
     {
@@ -160,7 +206,37 @@ public class PlayerController : MonoBehaviour
             postionThreeSecondsBefore = transform.position;
         }
     }
+    IEnumerator Dash(Vector2 direction)
+    {
+        isDashing = true;
+        trailRenderer.emitting = true;
+        myFeetCollider.enabled = false;
+        myBodyCollider.enabled = false;
 
+        rb.AddForce(direction.normalized * dashSpeed, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(dashDuration);
+
+        isDashing = false;
+        trailRenderer.emitting = false;
+        myFeetCollider.enabled = true;
+        myBodyCollider.enabled = true;
+    }
+
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            if (!blockQueue.Contains(other.gameObject.transform))
+            {
+                blockQueue.Enqueue(other.gameObject.transform);
+            }
+            if (blockQueue.Count > respawnBlockDistance)
+            {
+                blockQueue.Dequeue();
+            }
+        }
+    }
 
 
 }

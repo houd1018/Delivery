@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using MyPackage;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -62,6 +63,13 @@ public class DialoguePanelWidget : MonoBehaviour
         }
         UniTask.ReturnToMainThread(this.GetCancellationTokenOnDestroy());
         m_complete = true;
+    }
+
+    public void OnClickSkip()
+    {
+        DialogueManager.Instance.SkipDialogue();
+        OnNextMessage?.Invoke();
+        SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_icon_hover);
     }
     private void checkUserInput()
     {

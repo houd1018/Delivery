@@ -26,7 +26,7 @@ public class PlayerInteract : MonoBehaviour
     }
     void checkInteract()
     {
-        if (canInteract)
+        if (GameModel.Instance.CanInteract&&!GameModel.Instance.InTimeLine)
         {
             offsetPos = transform.position + new Vector3(offsetX, offsetY, 0);
             var hit = Physics2D.Raycast(offsetPos, Vector2.right, distance, LayerMask);
@@ -44,18 +44,31 @@ public class PlayerInteract : MonoBehaviour
                 hit.collider.GetComponent<IInteractable>().Interact();
             }
         }
-
+        else
+        {
+            InteractPromptManager.Instance.HidePrompt();
+        }
     }
-
+    public void Interact()
+    {
+        Debug.Log("interact");
+        offsetPos = transform.position + new Vector3(offsetX, offsetY, 0);
+        var hit = Physics2D.Raycast(offsetPos, Vector2.right, distance, LayerMask);
+        if (hit.collider != null)
+        {
+            InteractPromptManager.Instance.HidePrompt();
+            hit.collider.GetComponent<IInteractable>().Interact();
+        }
+    }
     void onDialogue(DialogueEvent e)
     {
         if (e.IsTalking)
         {
-            canInteract = false;
+            GameModel.Instance.CanInteract = false;
         }
         else
         {
-            canInteract = true;
+            GameModel.Instance.CanInteract = true;
         }
     }
     // Update is called once per frame

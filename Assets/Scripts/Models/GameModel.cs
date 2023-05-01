@@ -8,7 +8,8 @@ public enum CurLevel
 {
     Heaven,
     Earth,
-    Hell
+    Hell,
+    None
 }
 public class GameModel : Singleton<GameModel>
 {
@@ -21,7 +22,7 @@ public class GameModel : Singleton<GameModel>
             m_gameStarted = value;
         }
     }
-    private CurLevel m_curLevel;
+    private CurLevel m_curLevel = CurLevel.None;
     public CurLevel CurLevel
     {
         get => m_curLevel;
@@ -39,6 +40,36 @@ public class GameModel : Singleton<GameModel>
         set
         {
             m_scrollSpeed = value;
+        }
+    }
+    public float OriginDepth;
+    private float m_depth;
+    public float Depth
+    {
+        get => m_depth;
+        set
+        {
+            m_depth = value;
+            EventSystem.Instance.SendEvent<DepthEvent>(typeof(DepthEvent), new DepthEvent() { Depth = m_depth });
+        }
+    }
+    private bool m_canInteract;
+    public bool CanInteract
+    {
+        get => m_canInteract;
+        set
+        {
+            m_canInteract = value;
+        }
+    }
+
+    private bool m_inTimeline;
+    public bool InTimeLine
+    {
+        get => m_inTimeline;
+        set
+        {
+            m_inTimeline = value;
         }
     }
     public GameModel()
@@ -63,7 +94,8 @@ public class GameModel : Singleton<GameModel>
     }
     void onGameStart(GameStartEvent e)
     {
-        Reset();
+        CurLevel = CurLevel.Heaven;
+        ScrollSpeed = 0;
         GameStarted = true;
         ScrollSpeed = 1;
     }
@@ -93,5 +125,7 @@ public class GameModel : Singleton<GameModel>
         GameStarted = false;
         CurLevel = CurLevel.Heaven;
         ScrollSpeed = 0;
+        OriginDepth = 0;
+        Depth = 0;
     }
 }

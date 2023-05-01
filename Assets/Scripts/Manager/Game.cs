@@ -39,6 +39,18 @@ namespace Isekai.Managers
         }
         public bool IsTalking;
     }
+    public class DepthEvent : IEventHandler
+    {
+        public float Depth;
+    }
+    public class CanInteractEvent : IEventHandler
+    {
+        public CanInteractEvent(bool canInteract)
+        {
+            CanInteract = canInteract;
+        }
+        public bool CanInteract;
+    }
     public class Game : MonoSingleton<Game>
     {
         async void Start()
@@ -65,9 +77,20 @@ namespace Isekai.Managers
             await LevelManager.Instance.TransitionToScene("MainMenu",null);
             ScreenManager.Instance.TransitionToInstant(UI.EScreenType.MainMenuScreen, ELayerType.DefaultLayer, new MainMenuViewModel());
         }
-        public void GoToZeueScene()
+        public void GoToZeusScene()
         {
-            LevelManager.Instance.TransitionToScene("ZeusScene",()=> { GameModel.Instance.GameStarted = true; } ).Forget();
+            LevelManager.Instance.TransitionToScene("ZeusScene",()=> 
+            { 
+                GameModel.Instance.GameStarted = true;
+                var playerdata = Resources.Load<CharacterStats_SO>("Data/CharacterData/PlayerData");
+                playerdata.maxHealth = 1;
+                playerdata.currentHealth = 1;
+/*                ScreenManager.Instance.TransitionToInstant<HUDScreenViewModel>(Isekai.UI.EScreenType.HUDScreen, ELayerType.HUDLayer,
+                new HUDScreenViewModel(playerdata)
+                {
+
+                });*/
+            } ).Forget();
         }
         public void PauseGame()
         {
