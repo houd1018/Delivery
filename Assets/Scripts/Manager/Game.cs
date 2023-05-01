@@ -65,9 +65,13 @@ namespace Isekai.Managers
             await LevelManager.Instance.TransitionToScene("MainMenu",null);
             ScreenManager.Instance.TransitionToInstant(UI.EScreenType.MainMenuScreen, ELayerType.DefaultLayer, new MainMenuViewModel());
         }
-        public void GoToZeueScene()
+        public void GoToZeusScene()
         {
-            LevelManager.Instance.TransitionToScene("ZeusScene",()=> { GameModel.Instance.GameStarted = true; } ).Forget();
+            LevelManager.Instance.TransitionToScene("ZeusScene",()=> 
+            { 
+                GameModel.Instance.GameStarted = true; 
+                
+            } ).Forget();
         }
         public void PauseGame()
         {

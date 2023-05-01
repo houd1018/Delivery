@@ -18,7 +18,8 @@ public class BaseChunk : MonoBehaviour
         foreach (Transform item in transform.Find("Floors"))
         {
             Blocks.Add(item.gameObject);
-            if(m_scrollData.Difficulty > Random.Range(0f,1f))
+            item.GetComponent<SpriteRenderer>().sprite = GetNormalSprite();
+            if (m_scrollData.Difficulty > Random.Range(0f,1f))
             {
                 BlockData data = GetData();
 
@@ -28,17 +29,30 @@ public class BaseChunk : MonoBehaviour
         }
         
     }
-
+    Sprite GetNormalSprite()
+    {
+        switch (Level)
+        {
+            case CurLevel.Heaven:
+                return m_scrollData.HeavenBlocks[0].BlockSprite;
+            case CurLevel.Earth:
+                return m_scrollData.EarthBlocks[0].BlockSprite;
+            case CurLevel.Hell:
+                return m_scrollData.EarthBlocks[0].BlockSprite;
+            default:
+                return default;
+        }
+    }
     BlockData GetData()
     {
         switch (Level)
         {
             case CurLevel.Heaven:
-                return m_scrollData.HeavenBlocks[Random.Range((int)0, (int)m_scrollData.HeavenBlocks.Length)];
+                return m_scrollData.HeavenBlocks[Random.Range((int)1, (int)m_scrollData.HeavenBlocks.Length)];
             case CurLevel.Earth:
-                return m_scrollData.EarthBlocks[Random.Range((int)0, (int)m_scrollData.EarthBlocks.Length)];
+                return m_scrollData.EarthBlocks[Random.Range((int)1, (int)m_scrollData.EarthBlocks.Length)];
             case CurLevel.Hell:
-                return m_scrollData.HellBlocks[Random.Range((int)0, (int)m_scrollData.HellBlocks.Length)]; 
+                return m_scrollData.HellBlocks[Random.Range((int)1, (int)m_scrollData.HellBlocks.Length)]; 
             default:
                 return default;                
         }

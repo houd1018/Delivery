@@ -16,7 +16,14 @@ public class BaseNPC : MonoBehaviour,IInteractable
         {
             DialogueData data = DialoguesQueue[0];
             DialoguesQueue.RemoveAt(0);
-            DialogueManager.Instance.PushMessages(data.Dialogues, OnDialoguesComplete);
+            if (DialoguesQueue.Count == 0)
+            {
+                DialogueManager.Instance.PushMessages(data.Dialogues, OnDialoguesComplete);
+            }
+            else
+            {
+                DialogueManager.Instance.PushMessages(data.Dialogues, null);
+            }
         }
         else
         {

@@ -8,7 +8,8 @@ public enum BlockType
     ConveyBlock,
     DisappearBlock,
     MovingBlock,
-    TrapBlock
+    TrapBlock,
+    NormalBlock
 }
 [Serializable]
 public class BlockData

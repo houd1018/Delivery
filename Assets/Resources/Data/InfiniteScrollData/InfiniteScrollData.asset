@@ -19,9 +19,13 @@ MonoBehaviour:
   - {fileID: 2346017593677615372, guid: ad1c28ed82aa7564b91b0787b9952cc1, type: 3}
   - {fileID: 2346017593677615372, guid: 48d2581f9d02c8b4f9a188d7a0cdfe3c, type: 3}
   HeavenBlocks:
+  - Type: 5
+    BlockSprite: {fileID: 21300000, guid: 6391667830937eb4db7489b3d27182dd, type: 3}
   - Type: 0
-    BlockSprite: {fileID: 21300000, guid: ad08c1b79a8cee44fb9d333e8d3e91eb, type: 3}
+    BlockSprite: {fileID: 21300000, guid: b9c66b8ff42a08a48852a28e45e5f67c, type: 3}
   EarthBlocks:
+  - Type: 5
+    BlockSprite: {fileID: 21300000, guid: ffd04ca751cf96a459242aff9b6401c9, type: 3}
   - Type: 0
     BlockSprite: {fileID: 21300000, guid: b874123a7f1583748b7cf6b158da9719, type: 3}
   - Type: 2
@@ -29,8 +33,10 @@ MonoBehaviour:
   - Type: 3
     BlockSprite: {fileID: 21300000, guid: 2d720e1e32bdae740afbc1c83389b63c, type: 3}
   HellBlocks:
+  - Type: 5
+    BlockSprite: {fileID: 21300000, guid: ffd04ca751cf96a459242aff9b6401c9, type: 3}
   - Type: 0
-    BlockSprite: {fileID: 21300000, guid: 7de4a7ddca29ef34abc03c1eec030e2f, type: 3}
+    BlockSprite: {fileID: 21300000, guid: a346a5174ab5b3d4bbb0c23d3ba7028c, type: 3}
   - Type: 1
     BlockSprite: {fileID: 21300000, guid: b874123a7f1583748b7cf6b158da9719, type: 3}
   - Type: 2

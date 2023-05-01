@@ -25,7 +25,7 @@ namespace Isekai.UI.Views.Screens
         }
         public void OnNewGameClicked()
         {
-            Game.Instance.GoToZeueScene();
+            Game.Instance.GoToZeusScene();
         }
         public void OnSettingsClicked()
         {
