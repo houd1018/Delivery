@@ -8,7 +8,8 @@ public enum CurLevel
 {
     Heaven,
     Earth,
-    Hell
+    Hell,
+    None
 }
 public class GameModel : Singleton<GameModel>
 {
@@ -21,7 +22,7 @@ public class GameModel : Singleton<GameModel>
             m_gameStarted = value;
         }
     }
-    private CurLevel m_curLevel;
+    private CurLevel m_curLevel = CurLevel.None;
     public CurLevel CurLevel
     {
         get => m_curLevel;

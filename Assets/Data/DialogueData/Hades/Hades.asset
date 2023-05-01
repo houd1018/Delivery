@@ -13,9 +13,25 @@ MonoBehaviour:
   m_Name: Hades
   m_EditorClassIdentifier: 
   Dialogues:
-  - SpeakerName: Hades
-    Text: Thanks for the DELIVERY!
+  - SpeakerName: Hermos
+    Text: "Hades, sir, I have a message for you! It\u2019s from our lord, the king
+      of all gods, the ruler of Olympians\u2026your brother in short.  "
     Avatar: {fileID: 21300000, guid: 0e41accab4bb021488e595c07aec2e67, type: 3}
   - SpeakerName: Hades
-    Text: Good Job!
+    Text: 'What does he want? '
+    Avatar: {fileID: 21300000, guid: bdd3af0e3287f2849a3cf21648045175, type: 3}
+  - SpeakerName: Hermos
+    Text: 'Well, there will be a party to celebrate a marriage. Zeus asked me to
+      inform you of this. And be sure to bring all gods here in the underworld.  '
+    Avatar: {fileID: 21300000, guid: 0e41accab4bb021488e595c07aec2e67, type: 3}
+  - SpeakerName: Hades
+    Text: 'Sure, sure. Thank you Hermes, your job is finished and you can go now.
+      (talk to himself: how many people should I tell?'
+    Avatar: {fileID: 21300000, guid: bdd3af0e3287f2849a3cf21648045175, type: 3}
+  - SpeakerName: Hades
+    Text: "My wife, of course, Nyx maybe, who else\u2026? Is there anyone in charge
+      of discord\u2026? Dunno. "
+    Avatar: {fileID: 21300000, guid: bdd3af0e3287f2849a3cf21648045175, type: 3}
+  - SpeakerName: Hermos
+    Text: "You are welcome! Now I\u2019ll need to go back to find next god(sigh)."
     Avatar: {fileID: 21300000, guid: 0e41accab4bb021488e595c07aec2e67, type: 3}
