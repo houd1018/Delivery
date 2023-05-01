@@ -52,7 +52,7 @@ MonoBehaviour:
   - Type: 0
     BlockSprite: {fileID: 21300000, guid: a346a5174ab5b3d4bbb0c23d3ba7028c, type: 3}
   - Type: 1
-    BlockSprite: {fileID: 21300000, guid: b874123a7f1583748b7cf6b158da9719, type: 3}
+    BlockSprite: {fileID: 21300000, guid: ae0404bbb87935e49bf610e2b1b20cb4, type: 3}
   - Type: 2
     BlockSprite: {fileID: 21300000, guid: 456c77436b2acc745adc1493572f91b4, type: 3}
   - Type: 3
