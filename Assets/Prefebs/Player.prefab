@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754ae2fc007094c41a25df5858aa5a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnBlockDistance: 2
+  respawnBlockDistance: 1
   runSpeed: 7
   jumpForce: 8
   respawnDelay: 5
