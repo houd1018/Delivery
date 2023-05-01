@@ -45,6 +45,10 @@ public class Zeus : BaseNPC
             });
         }).Forget();
     }
+    public void PlayEatAppleSound()
+    {
+        SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_apple);
+    }
     protected override void Update()
     {
         base.Update();

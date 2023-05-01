@@ -17,8 +17,9 @@ public class SoundDefine
     public const string SFX_UI_Win_Open = "Sound/ui/ui_win_show";
     public const string SFX_UI_Win_Close = "Sound/ui/ui_win_close";
     public const string SFX_UI_icon_hover = "Sound/ui/sfc_icon_hover";
+    public const string SFX_UI_apple = "Sound/ui/sfx_apple";
 
-    public const string SFX_Battle_Player_LevelUp = "Battle/sfx_battle_levelup";
+    public const string SFX_Battle_Player_LevelUp = "Sound/Battle/sfx_battle_levelup";
     public const string SFX_Battle_normalBoomerang = "Battle/sfx_battle_normalBoomerang";
     public const string SFX_Battle_bonusBoomerang = "Battle/sfx_battle_bonusBoomerang";
     public const string SFX_Battle_grab = "Battle/sfx_battle_grab";

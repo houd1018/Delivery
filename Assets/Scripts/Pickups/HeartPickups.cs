@@ -17,6 +17,7 @@ public class HeartPickups : MonoBehaviour
             // update health in SO objects
             var playerStates = other.GetComponent<CharacterStats>();
             playerStates.TakeHeart(playerStates, healValue);
+            SoundManager.Instance.PlaySound(SoundDefine.SFX_Battle_Player_LevelUp);
 
             Destroy(gameObject);
         }

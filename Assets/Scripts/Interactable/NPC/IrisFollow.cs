@@ -16,11 +16,11 @@ public class IrisFollow : MonoBehaviour
     void Start()
     {
         recordPlayerLastPos().Forget();
-        checkTransport().Forget();
+        checkTeleport().Forget();
     }
     void trackPlayer()
     {
-        if (Vector3.Distance(transform.position, playerLastPoint) > 0.5f)
+        if (Vector3.Distance(transform.position, playerLastPoint) > 1f)
         {
             transform.Translate((playerLastPoint - transform.position).normalized* Speed * Time.deltaTime);
         }
@@ -34,20 +34,30 @@ public class IrisFollow : MonoBehaviour
             playerLastPoint = Player.position;
         }
     }
-    async UniTaskVoid checkTransport()
+    async UniTaskVoid checkTeleport()
     {
         while (true)
         {
+            if (GameModel.Instance.TeleportTime <= 0)
+            {
+                break;
+            }
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 Player.gameObject.SetActive(false);
+                if (Game.Instance != null)
+                    Game.Instance.PauseScroll();
                 await destroyVFX(Instantiate(HolySpell, Player.transform.position, Quaternion.identity));
-                //Game.Instance.PauseScroll();
+
                 while (!chooseDestination())
                 {
                     await UniTask.Yield(this.GetCancellationTokenOnDestroy());
                 }
                 Destination.gameObject.SetActive(false);
+                if (Game.Instance != null)
+                    Game.Instance.ResumeScroll();
+
+                GameModel.Instance.TeleportTime--;
             }
             await UniTask.Yield(this.GetCancellationTokenOnDestroy());
         }
@@ -81,6 +91,7 @@ public class IrisFollow : MonoBehaviour
     async UniTask destroyVFX(GameObject go)
     {
         await UniTask.Delay(1000, false, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
+        Destroy(go);
     }
 
     // Update is called once per frame

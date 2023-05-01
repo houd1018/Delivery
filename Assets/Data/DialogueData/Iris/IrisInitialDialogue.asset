@@ -22,3 +22,6 @@ MonoBehaviour:
   - SpeakerName: Iris (giggle)
     Text: "Don\u2019t worry, I\u2019m here with you."
     Avatar: {fileID: 21300000, guid: 44e777f03f7c54f48af17cee329e538f, type: 3}
+  - SpeakerName: Iris
+    Text: You can now press <shift> to use the teleport ability
+    Avatar: {fileID: 21300000, guid: 44e777f03f7c54f48af17cee329e538f, type: 3}
