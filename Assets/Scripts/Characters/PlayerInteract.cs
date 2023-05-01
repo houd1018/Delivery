@@ -30,11 +30,11 @@ public class PlayerInteract : MonoBehaviour
         {
             offsetPos = transform.position + new Vector3(offsetX, offsetY, 0);
             var hit = Physics2D.Raycast(offsetPos, Vector2.right, distance, LayerMask);
-            if (hit.collider != null)
+            if (hit.collider != null&& InteractPromptManager.Instance != null)
             {
                 InteractPromptManager.Instance.ShowPrompt("Talk<E>", hit.collider.transform.position + Vector3.up);
             }
-            else
+            else if(InteractPromptManager.Instance!=null)
             {
                 InteractPromptManager.Instance.HidePrompt();
             }

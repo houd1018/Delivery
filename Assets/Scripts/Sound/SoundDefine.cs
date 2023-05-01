@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class SoundDefine
 {
-    public const string Music_Login = "bgm-login";
-    public const string Music_Select = "bgm-select";
-    public const string Music_Battle = "bgm-battle";
-    public const string Music_MainMenu = "bgm-mainmenu";
+    public const string Music_Login = "Sound/Music/bgm-login";
+    public const string Music_Select = "Sound/Music/bgm-select";
+    public const string Music_Battle = "Sound/Music/bgm-battle";
+    public const string Music_MainMenu = "Sound/Music/bgm-mainmenu";
 
-    public const string SFX_Message_Info = "ui/sfx_click1";
-    public const string SFX_Message_Error = "ui/sfx_msg_error";
+    public const string SFX_Message_Info = "Sound/ui/sfx_click1";
+    public const string SFX_Message_Error = "Sound/ui/sfx_msg_error";
 
-    public const string SFX_UI_Click = "ui/sfx_click1";
-    public const string SFX_UI_Confirm = "ui/sfx_accept1";
-    public const string SFX_UI_Win_Open = "ui/ui_win_show";
-    public const string SFX_UI_Win_Close = "ui/ui_win_close";
-    public const string SFX_UI_icon_hover = "ui/sfc_icon_hover";
+    public const string SFX_UI_Click = "Sound/ui/sfx_click1";
+    public const string SFX_UI_Confirm = "Sound/ui/sfx_accept1";
+    public const string SFX_UI_Win_Open = "Sound/ui/ui_win_show";
+    public const string SFX_UI_Win_Close = "Sound/ui/ui_win_close";
+    public const string SFX_UI_icon_hover = "Sound/ui/sfc_icon_hover";
 
     public const string SFX_Battle_Player_LevelUp = "Battle/sfx_battle_levelup";
     public const string SFX_Battle_normalBoomerang = "Battle/sfx_battle_normalBoomerang";

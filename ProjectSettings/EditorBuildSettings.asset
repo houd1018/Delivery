@@ -14,5 +14,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ZeusScene.unity
     guid: 87345e964acf7ce47b37d3840fda908e
+  - enabled: 1
+    path: Assets/Scenes/Earth.unity
+    guid: ebb636cd85799774cae3e7627057623a
+  - enabled: 1
+    path: Assets/Scenes/Hell.unity
+    guid: 5da2d7af58d366d46bf7bf8cb62d7f59
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 10aeeba865aba424d9534740c44bcac5, type: 2}

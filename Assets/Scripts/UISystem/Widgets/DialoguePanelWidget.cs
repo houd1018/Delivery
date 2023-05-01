@@ -72,10 +72,13 @@ public class DialoguePanelWidget : MonoBehaviour
                 m_tokenSource.Cancel();
                 m_talkText.text = curText;
                 m_complete = true;
+
+                SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_icon_hover);
             }
             else
             {
                 OnNextMessage?.Invoke();
+                SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_icon_hover);
             }
         }
     }
