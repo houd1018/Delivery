@@ -19,12 +19,15 @@ namespace Isekai.UI.Views.Screens
         private Transform m_loadingAnim;
         [SerializeField]
         private TextMeshProUGUI m_loadingFinishNotify;
+        [SerializeField]
+        private TextMeshProUGUI m_loadingTips;
 
         private bool m_continue;
         public override void OnEnterScreen()
         {
             curValue = 0;
             Loading().Forget();
+            SetTips(ViewModel.LoadingTips);
         }
 
         
@@ -41,6 +44,7 @@ namespace Isekai.UI.Views.Screens
                 //curValue += Time.deltaTime * 0.4f;
                 await UniTask.Yield(this.GetCancellationTokenOnDestroy());
             }
+            await UniTask.Delay((int)ViewModel.MinLoadingTime * 1000, false, PlayerLoopTiming.Update, this.GetCancellationTokenOnDestroy());
             m_progressBar.gameObject.SetActive(false);
             m_loadingAnim.gameObject.SetActive(false);
             m_loadingFinishNotify.gameObject.SetActive(true);
@@ -52,6 +56,7 @@ namespace Isekai.UI.Views.Screens
                 }
                 await UniTask.Yield(this.GetCancellationTokenOnDestroy());
             }
+            
             ViewModel.LoadingComplete();
             
         }
@@ -67,7 +72,14 @@ namespace Isekai.UI.Views.Screens
                     break;
             }
         }
-
+        public void SetTips(string text)
+        {
+            m_loadingTips.text = text;
+        }
+        private void OnDisable()
+        {
+            m_loadingTips.text = "";
+        }
         public override void OnExitScreen()
         {
             Debug.Log("Exit Loading Screen");

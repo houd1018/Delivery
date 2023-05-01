@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour
     }
     void checkGameStarted()
     {
-        if (Game.Instance != null)
+/*        if (Game.Instance != null)
         {
             if (GameModel.Instance.GameStarted)
             {
@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
             {
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;
             }
-        }
+        }*/
 
     }
     void checkIsDead()
@@ -198,7 +198,7 @@ public class PlayerController : MonoBehaviour
             {
 
             });
-        }).Forget();
+        },0, "Tips: Use WASD to move and click to continue with dialogues").Forget();
     }
     // void CheckDash()
     // {

@@ -36,6 +36,6 @@ public class HeavenToEarthGate :MonoBehaviour, IInteractable
 
             });
             EventSystem.Instance.SendEvent(typeof(GameStartEvent), new GameStartEvent());
-        }).Forget();
+        },0,"").Forget();
     }
 }

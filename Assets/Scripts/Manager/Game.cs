@@ -74,7 +74,7 @@ namespace Isekai.Managers
         public async UniTaskVoid BackToMainMenu()
         {
             Time.timeScale = 1;
-            await LevelManager.Instance.TransitionToScene("MainMenu",null);
+            await LevelManager.Instance.TransitionToScene("MainMenu",null,0,"");
             ScreenManager.Instance.TransitionToInstant(UI.EScreenType.MainMenuScreen, ELayerType.DefaultLayer, new MainMenuViewModel());
         }
         public void GoToZeusScene()
@@ -90,7 +90,7 @@ namespace Isekai.Managers
                 {
 
                 });*/
-            } ).Forget();
+            },0,"Tips: Use WASD to move and click to continue with dialogues" ).Forget();
         }
         public void PauseGame()
         {

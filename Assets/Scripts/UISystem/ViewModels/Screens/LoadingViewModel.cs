@@ -20,6 +20,14 @@ namespace Isekai.UI.ViewModels.Screens
                 ChangePropertyAndNotify(ref m_loadingProgress, value);
             }
         }
+        public float MinLoadingTime = 0;
+        public string LoadingTips { get; private set; }
+        public LoadingViewModel(float minLoadingTime,string loadingTips)
+        {
+            MinLoadingTime = minLoadingTime;
+            LoadingTips = loadingTips;
+        }
+    
         public void LoadingComplete()
         {
             //ScreenManager.Instance.TransitionTo(EScreenType.MainMenuScreen, ELayerType.DefaultLayer, new MainMenuViewModel()).Forget();

@@ -15,4 +15,4 @@ MonoBehaviour:
   Dialogues:
   - SpeakerName: Zeus
     Text: 'Ha, I caught you. Playing tricks and not doing your job? '
-    Avatar: {fileID: 21300000, guid: d76f1f7ea8f59ca4694a06061581b778, type: 3}
+    Avatar: {fileID: 21300000, guid: 0942b55ccec0f6f468dfce1b1476c7d9, type: 3}

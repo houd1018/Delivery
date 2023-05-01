@@ -36,6 +36,6 @@ public class EarthToHellGate : MonoBehaviour, IInteractable
             {
 
             });
-        }).Forget();
+        },5,"Tips: You can press <shift> to TELEPORT to another block").Forget();
     }
 }

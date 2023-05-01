@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dialogues:
   - SpeakerName: Zeus
-    Text: Now you have the power
-    Avatar: {fileID: 21300000, guid: d76f1f7ea8f59ca4694a06061581b778, type: 3}
+    Text: Now you have more power
+    Avatar: {fileID: 21300000, guid: 0942b55ccec0f6f468dfce1b1476c7d9, type: 3}
   - SpeakerName: Hermos
     Text: Thanks
-    Avatar: {fileID: 21300000, guid: 7d94242f55d428f468732029f917fdf0, type: 3}
-  - SpeakerName: Hermos
+    Avatar: {fileID: 21300000, guid: 0764f04fdc5499040ac28a49543541f3, type: 3}
+  - SpeakerName: Zeus
     Text: Are you ready for the DELIVERY ?
-    Avatar: {fileID: 21300000, guid: 7d94242f55d428f468732029f917fdf0, type: 3}
+    Avatar: {fileID: 21300000, guid: 0942b55ccec0f6f468dfce1b1476c7d9, type: 3}

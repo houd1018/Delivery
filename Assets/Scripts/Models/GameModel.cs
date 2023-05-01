@@ -148,7 +148,7 @@ public class GameModel : Singleton<GameModel>
         GameStarted = false;
         CurLevel = CurLevel.Heaven;
         ScrollSpeed = 0;
-        OriginDepth = 30000;
+        OriginDepth = 40000;
         Depth = 0;
         TeleportTime = 0;
         ScrollPaused = false;

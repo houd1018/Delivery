@@ -15,9 +15,9 @@ namespace Isekai.Managers
         {
 
         }
-        public async UniTask TransitionToScene(string sceneName, Action onTransitionComplete)
+        public async UniTask TransitionToScene(string sceneName, Action onTransitionComplete, float minLoadingTime, string loadingTips)
         {
-            LoadingViewModel viewModel = new LoadingViewModel();
+            LoadingViewModel viewModel = new LoadingViewModel(minLoadingTime, loadingTips);
             await ScreenManager.Instance.TransitionTo(UI.EScreenType.LoadingScreen, ELayerType.DefaultLayer, viewModel);
             viewModel.OnLoadingComplete += async () =>
             {

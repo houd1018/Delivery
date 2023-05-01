@@ -43,7 +43,7 @@ public class Zeus : BaseNPC
             {
 
             });
-        }).Forget();
+        },3, "Tips: Use WASD to move and click to continue with dialogues").Forget();
     }
     public void PlayEatAppleSound()
     {

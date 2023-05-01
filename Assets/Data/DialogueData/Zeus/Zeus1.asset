@@ -15,26 +15,23 @@ MonoBehaviour:
   Dialogues:
   - SpeakerName: Zeus
     Text: 'Hermes. After two weeks from now, I will hold a party in my garden. '
-    Avatar: {fileID: 21300000, guid: 44e777f03f7c54f48af17cee329e538f, type: 3}
+    Avatar: {fileID: 21300000, guid: 0942b55ccec0f6f468dfce1b1476c7d9, type: 3}
   - SpeakerName: Zeus
     Text: 'I want you tell Hades and ask him to attend '
-    Avatar: {fileID: 21300000, guid: 44e777f03f7c54f48af17cee329e538f, type: 3}
+    Avatar: {fileID: 21300000, guid: 0942b55ccec0f6f468dfce1b1476c7d9, type: 3}
   - SpeakerName: Hermus
     Text: "Sure, boss. But what\u2019s the party for? "
     Avatar: {fileID: 21300000, guid: 0764f04fdc5499040ac28a49543541f3, type: 3}
-  - SpeakerName: Kratos
-    Text: I need no protection!
-    Avatar: {fileID: 21300000, guid: 0e41accab4bb021488e595c07aec2e67, type: 3}
   - SpeakerName: Zeus
-    Text: "Well, you\u2019ve heard of the marriage between Peleus and Thetis"
-    Avatar: {fileID: 21300000, guid: 44e777f03f7c54f48af17cee329e538f, type: 3}
-  - SpeakerName: Zeus
-    Text: 'To celebrate their union, gods, goddesses, and heroes should all join
-      the party!  '
-    Avatar: {fileID: 21300000, guid: 44e777f03f7c54f48af17cee329e538f, type: 3}
+    Text: "Well, you\u2019ve heard of the marriage between Peleus and Thetis To celebrate
+      their union, gods, goddesses, and heroes should all join the party! "
+    Avatar: {fileID: 21300000, guid: 0942b55ccec0f6f468dfce1b1476c7d9, type: 3}
   - SpeakerName: Zeus
     Text: Here, take this invitation letter.
-    Avatar: {fileID: 21300000, guid: 44e777f03f7c54f48af17cee329e538f, type: 3}
+    Avatar: {fileID: 21300000, guid: 0942b55ccec0f6f468dfce1b1476c7d9, type: 3}
+  - SpeakerName: Zeus
+    Text: "You don\u2019t want to miss anyone because it may cause trouble."
+    Avatar: {fileID: 21300000, guid: 0942b55ccec0f6f468dfce1b1476c7d9, type: 3}
   - SpeakerName: Hermes
-    Text: Whatever you say sir
+    Text: 'Whatever you say sir (sigh: no leisure time for poor Hermes)'
     Avatar: {fileID: 21300000, guid: 0764f04fdc5499040ac28a49543541f3, type: 3}
