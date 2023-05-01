@@ -13,23 +13,28 @@ MonoBehaviour:
   m_Name: Zeus1
   m_EditorClassIdentifier: 
   Dialogues:
-  - SpeakerName: Lahkesis
-    Text: You will never find peace for what you have become.
-    Avatar: {fileID: 21300000, guid: 32494fa545b13414b970e61cce54e201, type: 3}
-  - SpeakerName: Kratos
-    Text: I am what the gods have made me!
-    Avatar: {fileID: 21300000, guid: 0e41accab4bb021488e595c07aec2e67, type: 3}
-  - SpeakerName: Athena
-    Text: Enough Kratos! With every city you destroy, the wrath of Olympus grows.
-      Soon I will no longer be able to protect you.
-    Avatar: {fileID: 21300000, guid: bdd3af0e3287f2849a3cf21648045175, type: 3}
+  - SpeakerName: Zeus
+    Text: 'Hermes. After two weeks from now, I will hold a party in my garden. '
+    Avatar: {fileID: 21300000, guid: 44e777f03f7c54f48af17cee329e538f, type: 3}
+  - SpeakerName: Zeus
+    Text: 'I want you tell Hades and ask him to attend '
+    Avatar: {fileID: 21300000, guid: 44e777f03f7c54f48af17cee329e538f, type: 3}
+  - SpeakerName: Hermus
+    Text: "Sure, boss. But what\u2019s the party for? "
+    Avatar: {fileID: 21300000, guid: 0764f04fdc5499040ac28a49543541f3, type: 3}
   - SpeakerName: Kratos
     Text: I need no protection!
     Avatar: {fileID: 21300000, guid: 0e41accab4bb021488e595c07aec2e67, type: 3}
-  - SpeakerName: Athena
-    Text: Don't forget that it was I who made you a God, Ghost of Sparta! Don't turn
-      your back on me!
-    Avatar: {fileID: 21300000, guid: bdd3af0e3287f2849a3cf21648045175, type: 3}
-  - SpeakerName: Kratos
-    Text: I owe you nothing!
-    Avatar: {fileID: 21300000, guid: 0e41accab4bb021488e595c07aec2e67, type: 3}
+  - SpeakerName: Zeus
+    Text: "Well, you\u2019ve heard of the marriage between Peleus and Thetis"
+    Avatar: {fileID: 21300000, guid: 44e777f03f7c54f48af17cee329e538f, type: 3}
+  - SpeakerName: Zeus
+    Text: 'To celebrate their union, gods, goddesses, and heroes should all join
+      the party!  '
+    Avatar: {fileID: 21300000, guid: 44e777f03f7c54f48af17cee329e538f, type: 3}
+  - SpeakerName: Zeus
+    Text: Here, take this invitation letter.
+    Avatar: {fileID: 21300000, guid: 44e777f03f7c54f48af17cee329e538f, type: 3}
+  - SpeakerName: Hermes
+    Text: Whatever you say sir
+    Avatar: {fileID: 21300000, guid: 0764f04fdc5499040ac28a49543541f3, type: 3}
