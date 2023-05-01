@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterStats : MonoBehaviour
 {
     public CharacterStats_SO characterData;
+    [SerializeField] AudioClip damageSFX;
 
     #region Read from Data_SO
     public int MaxHealth
@@ -40,6 +41,7 @@ public class CharacterStats : MonoBehaviour
         }
         set
         {
+            AudioSource.PlayClipAtPoint(damageSFX, Camera.main.transform.position);
             characterData.currentHealth = value;
         }
     }
