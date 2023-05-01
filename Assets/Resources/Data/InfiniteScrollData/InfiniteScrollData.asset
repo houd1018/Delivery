@@ -34,29 +34,29 @@ MonoBehaviour:
   - {fileID: 2346017593677615372, guid: 6045e98c74339b44aa35f581d2c07530, type: 3}
   HeavenBlocks:
   - Type: 5
-    BlockSprite: {fileID: 21300000, guid: 6391667830937eb4db7489b3d27182dd, type: 3}
+    BlockSprite: {fileID: 21300000, guid: 8eef441c88048b34f8901c96e9d3a7fd, type: 3}
   - Type: 0
-    BlockSprite: {fileID: 21300000, guid: b9c66b8ff42a08a48852a28e45e5f67c, type: 3}
+    BlockSprite: {fileID: 21300000, guid: e56549aa619cf274fbef6440892796d9, type: 3}
   EarthBlocks:
   - Type: 5
-    BlockSprite: {fileID: 21300000, guid: ffd04ca751cf96a459242aff9b6401c9, type: 3}
+    BlockSprite: {fileID: 21300000, guid: 6407023d1a5220a4887c71c2d4050ec4, type: 3}
   - Type: 0
-    BlockSprite: {fileID: 21300000, guid: b874123a7f1583748b7cf6b158da9719, type: 3}
+    BlockSprite: {fileID: 21300000, guid: e56549aa619cf274fbef6440892796d9, type: 3}
   - Type: 2
-    BlockSprite: {fileID: 21300000, guid: 2d720e1e32bdae740afbc1c83389b63c, type: 3}
+    BlockSprite: {fileID: 21300000, guid: 6eed0e1dd3d73a04c826907b4a14df89, type: 3}
   - Type: 3
-    BlockSprite: {fileID: 21300000, guid: 2d720e1e32bdae740afbc1c83389b63c, type: 3}
+    BlockSprite: {fileID: 21300000, guid: 96a6d0df61b5f6749b1d03d78ba90f05, type: 3}
   HellBlocks:
   - Type: 5
-    BlockSprite: {fileID: 21300000, guid: ffd04ca751cf96a459242aff9b6401c9, type: 3}
+    BlockSprite: {fileID: 21300000, guid: 620ed2f4bc570f245b95538410b15da6, type: 3}
   - Type: 0
-    BlockSprite: {fileID: 21300000, guid: a346a5174ab5b3d4bbb0c23d3ba7028c, type: 3}
+    BlockSprite: {fileID: 21300000, guid: e56549aa619cf274fbef6440892796d9, type: 3}
   - Type: 1
     BlockSprite: {fileID: 21300000, guid: ae0404bbb87935e49bf610e2b1b20cb4, type: 3}
   - Type: 2
-    BlockSprite: {fileID: 21300000, guid: 456c77436b2acc745adc1493572f91b4, type: 3}
+    BlockSprite: {fileID: 21300000, guid: 6eed0e1dd3d73a04c826907b4a14df89, type: 3}
   - Type: 3
-    BlockSprite: {fileID: 21300000, guid: 456c77436b2acc745adc1493572f91b4, type: 3}
+    BlockSprite: {fileID: 21300000, guid: 96a6d0df61b5f6749b1d03d78ba90f05, type: 3}
   - Type: 4
     BlockSprite: {fileID: 21300000, guid: 17025bc4e3433de498ec8ff97ecc4845, type: 3}
   HeavenLastChunk: {fileID: 2346017593677615372, guid: 9148310be6b9a2740abdd2a0f4cb97a1, type: 3}
