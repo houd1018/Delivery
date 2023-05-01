@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Isekai.Managers;
+using Isekai.UI.ViewModels.Screens;
 using MyPackage;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,6 +29,12 @@ public class HeavenToEarthGate :MonoBehaviour, IInteractable
         GameModel.Instance.GameStarted = false;
         LevelManager.Instance.TransitionToScene("Earth", () =>
         {
+            var playerdata = Resources.Load<CharacterStats_SO>("Data/CharacterData/PlayerData");
+            ScreenManager.Instance.TransitionToInstant<HUDScreenViewModel>(Isekai.UI.EScreenType.HUDScreen, ELayerType.HUDLayer,
+            new HUDScreenViewModel(playerdata)
+            {
+
+            });
             EventSystem.Instance.SendEvent(typeof(GameStartEvent), new GameStartEvent());
         }).Forget();
     }
