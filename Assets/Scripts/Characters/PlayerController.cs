@@ -28,9 +28,11 @@ public class PlayerController : MonoBehaviour
     private PlayerStates playerStates;
     private TrailRenderer trailRenderer;
     private Vector3 postionThreeSecondsBefore; // Obsolete
+    Ray2D middleRay;
     CapsuleCollider2D myBodyCollider;
     BoxCollider2D myFeetCollider;
     Animator myAnimator;
+    Vector3 respawnMiddlePoint;
 
     bool isDead;
     bool hasDamaged;
@@ -65,6 +67,7 @@ public class PlayerController : MonoBehaviour
         // CheckDash();
         checkGameStarted();
         checkIsDead();
+        checkBlockInMiddle();
     }
     void SwitchStates()
     {
@@ -141,26 +144,26 @@ public class PlayerController : MonoBehaviour
         if (!hasDamaged && transform.position.y <= Camera.main.ScreenToWorldPoint(Vector3.zero).y)
         {
             hasDamaged = true;
-            Vector3 offset = new Vector3(0f, 1f, 0f);
-            Vector3 respawnPoint = blockQueue.Peek().position + offset;
-            transform.position = respawnPoint;
+            // Vector3 offset = new Vector3(0f, 1f, 0f);
+            // Vector3 respawnPoint = blockQueue.Peek().position + offset;
+            transform.position = respawnMiddlePoint;
             characterStats.CurrentHealth -= 1;
             StartCoroutine(WaitforTrapDamage());
         }
     }
     void checkGameStarted()
     {
-/*        if (Game.Instance != null)
-        {
-            if (GameModel.Instance.GameStarted)
-            {
-                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            }
-            else
-            {
-                rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            }
-        }*/
+        /*        if (Game.Instance != null)
+                {
+                    if (GameModel.Instance.GameStarted)
+                    {
+                        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                    }
+                    else
+                    {
+                        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                    }
+                }*/
 
     }
     void checkIsDead()
@@ -198,7 +201,7 @@ public class PlayerController : MonoBehaviour
             {
 
             });
-        },0, "Tips: Use WASD to move and click to continue with dialogues").Forget();
+        }, 0, "Tips: Use WASD to move and click to continue with dialogues").Forget();
     }
     // void CheckDash()
     // {
@@ -240,6 +243,22 @@ public class PlayerController : MonoBehaviour
     //     myBodyCollider.enabled = true;
     // }
 
+    private void checkBlockInMiddle()
+    {
+        middleRay = new Ray2D(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 10, Screen.height / 2, 0)), transform.right.normalized);
+        Debug.DrawRay(middleRay.origin, middleRay.direction * 4.5f, Color.yellow);
+        RaycastHit2D raycastHit2D = Physics2D.Raycast(middleRay.origin, middleRay.direction * 4.5f);
+        if (raycastHit2D)
+        {
+            GameObject hitObject = raycastHit2D.collider.gameObject;
+            // if (hitObject.layer == LayerMask.GetMask("Ground"))
+            // {
+                Vector3 offset = new Vector3(0f, 1f, 0f);
+                Debug.Log("Hit object: " + hitObject.name);
+                respawnMiddlePoint =  hitObject.transform.position + offset;
+            // }
+        }
+    }
 
     private void OnCollisionStay2D(Collision2D other)
     {
