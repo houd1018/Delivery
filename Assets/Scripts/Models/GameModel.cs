@@ -119,6 +119,7 @@ public class GameModel : Singleton<GameModel>
         GameStarted = true;
         ScrollSpeed = 1;
         EventSystem.Instance.SendEvent<ResumeGameEvent>(typeof(ResumeGameEvent), new ResumeGameEvent());
+        EventSystem.Instance.SendEvent<ResumeScrollEvent>(typeof(ResumeScrollEvent), new ResumeScrollEvent());
     }
     void onGameOver(GameOverEvent e)
     {

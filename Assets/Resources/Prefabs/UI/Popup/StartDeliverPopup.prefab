@@ -377,6 +377,8 @@ MonoBehaviour:
   m_title: {fileID: 776413382064704213}
   m_confirmText: {fileID: 776413380168721347}
   m_cancelText: {fileID: 776413381674014883}
+  m_gameplayText: {fileID: 5873793688927714678}
+  m_tipText: {fileID: 3359006584813172270}
 --- !u!1 &776413381668319315
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,14 +901,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Try to reach the bottom without losing your life!
-
-
-    Use WASD to move
-    and click to cotinue with dialogues.
-
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1041,8 +1036,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '(*Tips: Maximize and recover your lives by picking up golden apples and
-    red hearts on the way)'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

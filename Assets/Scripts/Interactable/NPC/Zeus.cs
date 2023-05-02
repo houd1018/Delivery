@@ -22,12 +22,14 @@ public class Zeus : BaseNPC
         var playerdata = Resources.Load<CharacterStats_SO>("Data/CharacterData/PlayerData");
         playerdata.currentHealth = 1;
         playerdata.maxHealth = 1;
-        PopupManager.Instance.ShowPopup<StartDeliverPopup>(PopupType.StartDeliverPopup, 
+        var popup = PopupManager.Instance.ShowPopup<StartDeliverPopup>(PopupType.StartDeliverPopup, 
             new PopupData() 
             {
                 OnCancelClicked = () => { Game.Instance.ResumeGame();},
                 OnConfirmClicked = onConfirm  
             });
+        popup.SetTips("Try to reach the bottom without losing your life!\n\nUse WASD to move and click to cotinue with dialogues.",
+            "(*Tips: Maximize and recover your lives by picking up golden apples and red hearts on the way)");
         Game.Instance.PauseGame();
     }
     void onConfirm()

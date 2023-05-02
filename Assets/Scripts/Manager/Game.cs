@@ -135,14 +135,7 @@ namespace Isekai.Managers
         private void Update()
         {
             OnPauseClicked();
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                PauseScroll();
-            }
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                ResumeScroll();
-            }
+
         }
 
     }

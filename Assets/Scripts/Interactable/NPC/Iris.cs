@@ -23,6 +23,7 @@ public class Iris : BaseNPC
             OnConfirmClicked = onConfirm
         });
         popup.SetTitle("Go To Hell?");
+        popup.SetTips("by pressing the shift key, you can activate Iris's blessings and teleport to any block", "");
         Game.Instance.PauseGame();
     }
     void onConfirm()
