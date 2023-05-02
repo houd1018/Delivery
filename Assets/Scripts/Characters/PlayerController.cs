@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
         // CheckDash();
         checkGameStarted();
         checkIsDead();
-        checkBlockInMiddle();
+        // checkBlockInMiddle();
     }
     void SwitchStates()
     {
@@ -144,9 +144,9 @@ public class PlayerController : MonoBehaviour
         if (!hasDamaged && transform.position.y <= Camera.main.ScreenToWorldPoint(Vector3.zero).y)
         {
             hasDamaged = true;
-            // Vector3 offset = new Vector3(0f, 1f, 0f);
-            // Vector3 respawnPoint = blockQueue.Peek().position + offset;
-            transform.position = respawnMiddlePoint;
+            Vector3 offset = new Vector3(0f, 1f, 0f);
+            Vector3 respawnPoint = blockQueue.Peek().position + offset;
+            transform.position = respawnPoint;
             characterStats.CurrentHealth -= 1;
             StartCoroutine(WaitforTrapDamage());
         }
