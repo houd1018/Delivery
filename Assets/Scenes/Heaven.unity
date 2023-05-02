@@ -455,7 +455,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Parent: {fileID: 1825239211}
-  ChunkPrefab: {fileID: 2346017593677615372, guid: 9148310be6b9a2740abdd2a0f4cb97a1, type: 3}
   m_infiniteScrollData: {fileID: 11400000, guid: fc93570f141acbe4488de1c657799e5f, type: 2}
   m_startPos: 0
   m_chunckHeight: 10
+  m_heartRatio: 0.2
+  m_difficultyGrow: 0.015
+  Level: 0

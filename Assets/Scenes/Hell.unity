@@ -828,4 +828,5 @@ MonoBehaviour:
   m_startPos: 0
   m_chunckHeight: 10
   m_heartRatio: 0.2
+  m_difficultyGrow: 0.015
   Level: 2

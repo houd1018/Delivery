@@ -44,7 +44,7 @@ public class InfiniteScrollManager:MonoBehaviour
         {
             m_mainCamera.transform.position += Vector3.down * Time.deltaTime*GameModel.Instance.ScrollSpeed;
             if(!GameModel.Instance.ScrollPaused)
-                GameModel.Instance.ScrollSpeed = 1 + m_infiniteScrollData.Difficulty*((int)Level+1);
+                GameModel.Instance.ScrollSpeed = 1 + m_infiniteScrollData.Difficulty*((int)Level+1)*0.5f;
         }
         checkIfNeedNewChunk();
         checkIfNeedDeleteOldChunk();
