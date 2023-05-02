@@ -13,25 +13,29 @@ MonoBehaviour:
   m_Name: Hades
   m_EditorClassIdentifier: 
   Dialogues:
-  - SpeakerName: Hermos
-    Text: "Hades, sir, I have a message for you! It\u2019s from our lord, the king
-      of all gods, the ruler of Olympians\u2026your brother in short."
+  - SpeakerName: Hermes
+    Text: 'Hades, sir, I have a message for you! '
+    Avatar: {fileID: 21300000, guid: 0764f04fdc5499040ac28a49543541f3, type: 3}
+  - SpeakerName: Hermes
+    Text: "It\u2019s from our lord, the king of all gods, the ruler of Olympians\u2026your
+      brother in short."
     Avatar: {fileID: 21300000, guid: 0764f04fdc5499040ac28a49543541f3, type: 3}
   - SpeakerName: Hades
     Text: 'What does he want? '
-    Avatar: {fileID: -532720366, guid: 49c6281ac5b5f474b880a8117413e8a2, type: 3}
-  - SpeakerName: Hermos
-    Text: 'Well, there will be a party to celebrate a marriage. Zeus asked me to
-      inform you of this. And be sure to bring all gods here in the underworld.  '
+    Avatar: {fileID: 21300000, guid: 79e269e4bc3bb5342ad91b221ba1e3f7, type: 3}
+  - SpeakerName: Hermes
+    Text: 'Well, there will be a party to celebrate a marriage. Zeus wanted you to
+      come and bring all gods here in the underworld.  '
     Avatar: {fileID: 21300000, guid: 0764f04fdc5499040ac28a49543541f3, type: 3}
   - SpeakerName: Hades
-    Text: 'Sure, sure. Thank you Hermes, your job is finished and you can go now.
-      (talk to himself: how many people should I tell?'
-    Avatar: {fileID: -532720366, guid: 49c6281ac5b5f474b880a8117413e8a2, type: 3}
-  - SpeakerName: Hades
-    Text: "My wife, of course, Nyx maybe, who else\u2026? Is there anyone in charge
-      of discord\u2026? Dunno. "
-    Avatar: {fileID: -532720366, guid: 49c6281ac5b5f474b880a8117413e8a2, type: 3}
-  - SpeakerName: Hermos
-    Text: "You are welcome! Now I\u2019ll need to go back to find next god(sigh)."
+    Text: 'I see. '
+    Avatar: {fileID: 21300000, guid: 79e269e4bc3bb5342ad91b221ba1e3f7, type: 3}
+  - SpeakerName: Hades (thinking)
+    Text: how many people should I tell though?
     Avatar: {fileID: 21300000, guid: 0764f04fdc5499040ac28a49543541f3, type: 3}
+  - SpeakerName: Hades (thinking)
+    Text: "My wife, of course, Nyx, who else\u2026? "
+    Avatar: {fileID: 21300000, guid: 79e269e4bc3bb5342ad91b221ba1e3f7, type: 3}
+  - SpeakerName: Hades
+    Text: I need to time to think about this. Hermes. You may leave now.
+    Avatar: {fileID: 21300000, guid: 79e269e4bc3bb5342ad91b221ba1e3f7, type: 3}
